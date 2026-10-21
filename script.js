@@ -12,20 +12,18 @@ if (textInput) {
     });
 }
 
-// 1. Case Conversions Logic Engine (Fixed Regex Syntax)
+// 1. Case Conversions Logic Engine
 function runCase(type) {
     let txt = textInput.value; 
-    if (!txt.trim()) return;
+    if (!txt || txt.trim() === '') return;
 
     if (type === 'upper') {
         textOutput.value = txt.toUpperCase();
     } else if (type === 'lower') {
         textOutput.value = txt.toLowerCase();
     } else if (type === 'title') {
-        // FIXED: Replaced the broken syntax with a robust string title-casing algorithm
-        textOutput.value = txt.replace(/\w\(\S*/\)g, (t) => t.charAt(0).toUpperCase() + t.substr(1).toLowerCase());
+        textOutput.value = txt.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
     } else if (type === 'sentence') {
-        // FIXED: Sanitized sentence boundary formatting regex logic matches cleanly
         textOutput.value = txt.toLowerCase().replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
     } else if (type === 'capitalize') {
         textOutput.value = txt.replace(/\b([a-z])/g, (m) => m.toUpperCase());
@@ -53,7 +51,7 @@ function runCase(type) {
 // 2. Whitespace Cleaner Logic Engine
 function runClean(type) {
     let txt = textInput.value; 
-    if (!txt.trim()) return;
+    if (!txt || txt.trim() === '') return;
 
     if (type === 'spaces') {
         textOutput.value = txt.replace(/[ \t]+/g, ' ').trim();
@@ -79,7 +77,7 @@ function runClean(type) {
 // 3. Lines & Lists Logic Engine
 function runList(type) {
     let txt = textInput.value; 
-    if (!txt.trim()) return;
+    if (!txt || txt.trim() === '') return;
     
     let lines = txt.split('\n');
     if (type === 'sort_az') {
@@ -116,5 +114,6 @@ function copyToClipboard() {
 function clearText() {
     textInput.value = '';
     textOutput.value = '';
-    if (textInput) textInput.dispatchEvent(new Event('input'));
+    if (wordCount) wordCount.textContent = '0';
+    if (charCount) charCount.textContent = '0';
 }
