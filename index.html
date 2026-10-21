@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TextFormattingTools | Free Online Text Utilities Hub</title>
-    <meta name="description" content="Free, secure online text formatting utilities. Convert case strings, clean whitespaces, and optimize textual content instantly in your browser.">
+    <title>Online Case Converter | Convert Text Case Instantly</title>
+    <meta name="description" content="Free online case converter utility. Quickly transform text blocks into UPPERCASE, lowercase, Title Case, or sentence case configurations instantly in your browser.">
     <link rel="canonical" href="https://github.io">
     
-    <!-- Premium Font Integration -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,41 +14,34 @@
 </head>
 <body>
 
-    <!-- Sleek, High-End Sticky Header Nav -->
+    <!-- Shared Dark Header -->
     <header class="app-header">
         <div class="nav-container">
-            <h1 class="logo-title">
+            
                 <a href="https://github.io" class="logo-text">
                     <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                     Text<span class="highlight">Formatting</span>Tools
                 </a>
-            </h1>
+            </div>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="#" class="nav-link active">Workspace</a></li>
-                    <li><a href="#seo-guidebook" class="nav-link">Documentation</a></li>
+                    <li><a href="index.html" class="nav-link active">Case Converter</a></li>
+                    <li><a href="whitespace.html" class="nav-link">Whitespace Cleaner</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Core Interactive Workspace -->
+    <!-- Content Workspace Area -->
     <main class="app-viewport">
-        
-        <!-- Modified Welcome & Niche Introduction Block -->
         <section class="welcome-intro-block">
-            <h2>Welcome to TextFormattingTools!</h2>
-            <p>We provide a comprehensive range of free, easy-to-use text utilities, string conversion tools, and content formatters. Our online applications are precision-engineered to help you clean, modify, and format your textual paragraphs quickly and accurately—whether you are debugging code at work, formatting assignments at home, or writing copy on the go.</p>
+            <h2>Free Online Case Converter Suite</h2>
+            <p>Welcome to our professional text case adjustment tool. This specific interface allows you to instantly alter capitalization configurations across paragraphs without corrupting original syntax metrics.</p>
         </section>
 
         <section class="workspace-card">
-            <div class="workspace-header">
-                <h3>Text Transformation Workspace</h3>
-                <p>All tool executions run locally in your web browser. Your raw content data never leaves your computer.</p>
-            </div>
-            
             <div class="editor-environment">
-                <textarea id="textInput" placeholder="Paste or type your data string here to initiate quick transformations..."></textarea>
+                <textarea id="textInput" placeholder="Paste or type your text strings here to adjust casing structures..."></textarea>
                 
                 <div class="metrics-panel">
                     <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
@@ -58,33 +50,22 @@
             </div>
 
             <div class="action-toolbar">
-                <button onclick="transformText('upper')" class="tool-btn secondary">UPPERCASE</button>
-                <button onclick="transformText('lower')" class="tool-btn secondary">lowercase</button>
-                <button onclick="transformText('clean')" class="tool-btn secondary">Clean Spacing</button>
-                <button onclick="copyToClipboard()" class="tool-btn primary">Copy Result</button>
+                <button onclick="convertCase('upper')" class="tool-btn secondary">UPPERCASE</button>
+                <button onclick="convertCase('lower')" class="tool-btn secondary">lowercase</button>
+                <button onclick="convertCase('title')" class="tool-btn secondary">Title Case</button>
+                <button onclick="copyToClipboard()" class="tool-btn primary">Copy Text</button>
                 <button onclick="clearText()" class="tool-btn damage">Clear</button>
             </div>
         </section>
 
-        <!-- Deep Semantic On-Page SEO Base for Google Ranking -->
-        <article id="seo-guidebook" class="seo-knowledge-base">
-            <h2>Professional Text Optimization & Formatting Platform</h2>
-            <p class="intro-paragraph">Whether you are an applications engineering developer cleaning up raw backend server logs, an SEO copy editor structuring blog copy, or a data coordinator arranging messy sheets, fast data formatting tools streamline production pipelines.</p>
-            
-            <div class="knowledge-grid">
-                <div class="knowledge-block">
-                    <h3>Secure Client-Side Processing</h3>
-                    <p>Unlike standard text scrapers, our formatting hub operates entirely within your browser memory window. No content strings are transmitted across networking lines.</p>
-                </div>
-                <div class="knowledge-block">
-                    <h3>Clean String Execution</h3>
-                    <p>Automated algorithms isolate and resolve spacing variants, double indents, and broken formatting elements instantly without disrupting structural typography codes.</p>
-                </div>
-            </div>
+        <!-- On-Page SEO Foundations -->
+        <article class="seo-knowledge-base">
+            <h2>Why Accurate Case Conversion Utility Matters</h2>
+            <p class="intro-paragraph">Inconsistent string text formatting lowers content editorial authority and user trust scores. Our platform runs entirely locally to guarantee prompt execution.</p>
         </article>
     </main>
 
-    <!-- Minimalist, Elegant Footer Matrix -->
+    <!-- Shared Dark Footer -->
     <footer class="app-footer">
         <div class="footer-container">
             <nav class="footer-links" aria-label="Footer Navigation">
@@ -94,7 +75,7 @@
                 <a href="#">Terms & FAQ</a>
             </nav>
             <div class="footer-copyright">
-                <p>&copy; 2026 TextFormattingTools. Safe, responsive browser utilities configuration.</p>
+                <p>&copy; 2026 TextFormattingTools. All rights reserved. Clean client-side engineering structures.</p>
             </div>
         </div>
     </footer>
