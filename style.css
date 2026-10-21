@@ -1,62 +1,54 @@
-/* Modern UI/UX Global Design Architecture Engine */
 :root {
     --bg-canvas: #f8fafc;
     --card-surface: #ffffff;
-    --primary-core: #4f46e5;
-    --primary-hover: #4338ca;
-    --accent-success: #10b981;
-    --accent-success-hover: #059669;
-    --accent-danger: #ef4444;
-    --accent-danger-hover: #dc2626;
+    --primary-core: #10b981;    /* Accent Green matching your preferences */
+    --primary-hover: #059669;
+    --dark-slate: #0f172a;      /* Dark core theme used in footer and header */
     --text-main: #0f172a;
     --text-muted: #64748b;
     --border-subtle: #e2e8f0;
     --shadow-premium: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
 }
 
-/* Base Level Visual Formats */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 body { background-color: var(--bg-canvas); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
-/* Premium Header and Nav Interface */
-.app-header { background-color: var(--card-surface); border-bottom: 1px solid var(--border-subtle); padding: 18px 24px; position: sticky; top: 0; z-index: 100; }
+/* Dark Header Styling to Match Footer Colors */
+.app-header { background-color: var(--dark-slate); border-bottom: 1px solid #1e293b; padding: 18px 24px; position: sticky; top: 0; z-index: 100; }
 .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.logo-text { font-size: 1.35rem; font-weight: 800; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; }
+
+/* Reset H1 styles so it acts purely as an SEO tag without ruining layout sizes */
+.logo-title { font-size: inherit; font-weight: inherit; margin: 0; padding: 0; display: inline; }
+.logo-text { font-size: 1.35rem; font-weight: 800; color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; }
 .logo-text span { color: var(--primary-core); }
 .logo-icon { width: 24px; height: 24px; color: var(--primary-core); }
+
 .nav-menu ul { display: flex; list-style: none; gap: 24px; }
-.nav-link { color: var(--text-muted); text-decoration: none; font-weight: 600; font-size: 14px; transition: color 0.15s ease; }
-.nav-link:hover, .nav-link.active { color: var(--primary-core); }
+.nav-link { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 14px; transition: color 0.15s ease; }
+.nav-link:hover, .nav-link.active { color: #ffffff; }
 
-/* Main Screen Viewport Control */
 .app-viewport { max-width: 1200px; margin: 40px auto; padding: 0 24px; flex: 1; width: 100%; }
-
-/* Workspace Card Design Layout */
 .workspace-card { background: var(--card-surface); padding: 32px; border-radius: 12px; box-shadow: var(--shadow-premium); border: 1px solid var(--border-subtle); margin-bottom: 48px; }
-.workspace-header h1 { font-size: 1.65rem; color: var(--text-main); font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+.workspace-header h2 { font-size: 1.45rem; color: var(--text-main); font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
 .workspace-header p { color: var(--text-muted); font-size: 14px; line-height: 1.5; margin-bottom: 24px; max-width: 850px; }
 
-/* Code Area Environment Elements */
 .editor-environment { position: relative; margin-bottom: 24px; }
 textarea { width: 100%; height: 260px; padding: 18px; border: 2px solid var(--border-subtle); border-radius: 8px; font-size: 16px; color: var(--text-main); line-height: 1.6; resize: vertical; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease; background: #fafafa; }
-textarea:focus { border-color: var(--primary-core); box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); background: #ffffff; }
+textarea:focus { border-color: var(--primary-core); box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1); background: #ffffff; }
 
-/* Micro UX Panels */
 .metrics-panel { display: flex; gap: 16px; margin-top: 12px; }
 .metric-pill { background: #f1f5f9; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; color: #475569; display: flex; gap: 6px; }
 .metric-value { color: var(--primary-core); font-weight: 700; }
 
-/* Optimized Functional Action Bars */
 .action-toolbar { display: flex; flex-wrap: wrap; gap: 12px; }
 .tool-btn { padding: 11px 22px; border: none; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.15s ease; display: inline-flex; align-items: center; justify-content: center; }
-.tool-btn.primary { background-color: var(--accent-success); color: white; }
-.tool-btn.primary:hover { background-color: var(--accent-success-hover); }
+.tool-btn.primary { background-color: var(--primary-core); color: white; }
+.tool-btn.primary:hover { background-color: var(--primary-hover); }
 .tool-btn.secondary { background-color: #f1f5f9; color: #334155; border: 1px solid var(--border-subtle); }
 .tool-btn.secondary:hover { background-color: #e2e8f0; color: var(--text-main); }
-.tool-btn.damage { background-color: #fef2f2; color: var(--accent-danger); margin-left: auto; }
+.tool-btn.damage { background-color: #fef2f2; color: #ef4444; margin-left: auto; }
 .tool-btn.damage:hover { background-color: #fee2e2; }
 
-/* UI Directory Matrix System */
 .directory-matrix { margin-bottom: 56px; }
 .matrix-heading { text-align: center; margin-bottom: 32px; }
 .matrix-heading h2 { font-size: 1.8rem; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
@@ -76,14 +68,13 @@ textarea:focus { border-color: var(--primary-core); box-shadow: 0 0 0 4px rgba(7
 .card-badge { position: absolute; top: 18px; right: 18px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 12px; background: #e0f2fe; color: #0369a1; }
 .card-badge.pending { background: #f1f5f9; color: #64748b; }
 
-/* Structural Semantic SEO Reading Container */
 .seo-knowledge-base { background: var(--card-surface); padding: 40px; border-radius: 12px; border: 1px solid var(--border-subtle); line-height: 1.7; }
 .seo-knowledge-base h2 { font-size: 1.45rem; font-weight: 700; color: var(--text-main); margin-bottom: 12px; }
 .intro-paragraph { color: #475569; font-size: 15px; margin-bottom: 28px; border-left: 4px solid var(--primary-core); padding-left: 16px; }
 .knowledge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
 @media (max-width: 768px) { .knowledge-grid { grid-template-columns: 1fr; } .action-toolbar { flex-direction: column; } .tool-btn.damage { margin-left: 0; } }
 .knowledge-block h3 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 8px; font-weight: 700; }
 .knowledge-block p { color: var(--text-muted); font-size: 14px; }
 
-/* Premium Global Footer */
-.app-footer { background-color: var(--text-main); color: #94a3b8; text-align: center; padding: 24px; font-size: 13.5px; margin-top: auto; border-top: 1px solid #334155; }
+.app-footer { background-color: var(--dark-slate); color: #94a3b8; text-align: center; padding: 24px; font-size: 13.5px; margin-top: auto; border-top: 1px solid #1e293b; }
