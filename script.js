@@ -14,22 +14,16 @@ function runLiveMetrics() {
     lineCount.textContent = text === '' ? 0 : text.split('\n').length;
 }
 
-// Drops down panel tab context shifting engine controls
 function switchContext(category) {
     document.getElementById('caseActions').classList.add('hidden-strip');
     document.getElementById('whitespaceActions').classList.add('hidden-strip');
     document.getElementById('listActions').classList.add('hidden-strip');
 
-    if (category === 'case') {
-        document.getElementById('caseActions').classList.remove('hidden-strip');
-    } else if (category === 'whitespace') {
-        document.getElementById('whitespaceActions').classList.remove('hidden-strip');
-    } else if (category === 'lists') {
-        document.getElementById('listActions').classList.remove('hidden-strip');
-    }
+    if (category === 'case') document.getElementById('caseActions').classList.remove('hidden-strip');
+    else if (category === 'whitespace') document.getElementById('whitespaceActions').classList.remove('hidden-strip');
+    else if (category === 'lists') document.getElementById('listActions').classList.remove('hidden-strip');
 }
 
-// 1. In-Place Case Conversions Execution
 function runCase(type) {
     let txt = textInput.value; if (!txt || txt.trim() === '') return;
     if (type === 'upper') textInput.value = txt.toUpperCase();
@@ -42,7 +36,6 @@ function runCase(type) {
     runLiveMetrics();
 }
 
-// 2. In-Place Whitespace Parsing Engine
 function runClean(type) {
     let txt = textInput.value; if (!txt || txt.trim() === '') return;
     if (type === 'spaces') textInput.value = txt.replace(/[ \t]+/g, ' ').trim();
@@ -53,7 +46,6 @@ function runClean(type) {
     runLiveMetrics();
 }
 
-// 3. In-Place List Arrangement Sorting
 function runList(type) {
     let txt = textInput.value; if (!txt || txt.trim() === '') return;
     let lines = txt.split('\n');
@@ -65,20 +57,16 @@ function runList(type) {
     runLiveMetrics();
 }
 
-async function pasteFromClipboard() {
-    try {
-        textInput.value = await navigator.clipboard.readText();
-        runLiveMetrics();
-    } catch (err) {
-        alert('Please grant clipboard access permissions to execute paste command layouts.');
-    }
+function generateLorem() {
+    textInput.value = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+    runLiveMetrics();
 }
 
 function copyToClipboard() {
     if (!textInput.value) return;
     textInput.select();
     document.execCommand('copy');
-    alert('Content successfully copied to clipboard!');
+    alert('Content copied to clipboard successfully!');
 }
 
 function clearText() {
