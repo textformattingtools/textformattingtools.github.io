@@ -13,67 +13,68 @@
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; list-style: none !important; }
 body { background-color: var(--bg-canvas); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; -webkit-font-smoothing: antialiased; }
 
-/* Sticky Header Layout */
-.app-header { background-color: var(--header-dark); padding: 18px 32px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.logo-text { font-size: 1.35rem; font-weight: 800; color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 10px; letter-spacing: -0.4px; }
-.logo-text .highlight { color: var(--primary-core); }
-.logo-icon { width: 22px; height: 22px; color: var(--primary-core); }
+/* Expanded Professional Header Layout Rules */
+.app-header { background-color: var(--header-dark); padding: 22px 32px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.brand-identity { display: flex; align-items: center; }
 
-.nav-menu ul { display: flex; gap: 12px; align-items: center; }
-.nav-link { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 13.5px; padding: 8px 16px; border-radius: 6px; transition: all 0.15s ease; border: 1px solid transparent; }
+/* Website Link Scaled Up by 30% for Clear Visibility */
+.logo-text { font-size: 1.65rem; font-weight: 800; color: #ffffff; text-decoration: none; display: flex; align-items: center; gap: 12px; letter-spacing: -0.5px; }
+.logo-text .highlight { color: var(--primary-core); }
+.logo-icon { width: 26px; height: 26px; color: var(--primary-core); }
+
+.nav-menu ul { display: flex; gap: 16px; align-items: center; }
+.nav-link { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 14px; padding: 8px 18px; border-radius: 6px; transition: all 0.15s ease; border: 1px solid transparent; }
 .nav-link:hover { color: #ffffff; background-color: rgba(255, 255, 255, 0.04); }
 .nav-link.active { color: #ffffff; background-color: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.25); }
 
-/* Layout Viewport */
-.app-viewport { max-width: 1100px; margin: 40px auto; padding: 0 24px; flex: 1; width: 100%; }
+/* Main Central Container Layout */
+.app-viewport { max-width: 1200px; margin: 40px auto; padding: 0 24px; flex: 1; width: 100%; }
 .welcome-intro-block { background: var(--card-surface); padding: 28px; border-radius: 12px; border: 1px solid var(--border-light); margin-bottom: 24px; }
 .welcome-intro-block h2 { font-size: 1.45rem; font-weight: 800; color: var(--text-main); margin-bottom: 8px; }
 .welcome-intro-block p { color: var(--text-muted); font-size: 14.5px; line-height: 1.6; }
 
-/* Workspace Component Outer Frame Shell */
-.workspace-card { background: var(--card-surface); padding: 24px; border-radius: 12px; border: 1px solid var(--border-light); margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.01); }
-
-/* Counter Metrics Row */
+/* Premium Dashboard Interactive Workspace Frame Shell */
+.workspace-card { background: var(--card-surface); padding: 24px; border-radius: 12px; border: 1px solid var(--border-light); margin-bottom: 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.02); }
 .metrics-panel { display: flex; gap: 12px; margin-bottom: 16px; }
 .metric-pill { background: #f1f5f9; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; color: #475569; border: 1px solid var(--border-light); }
 
-/* Side-by-Side Flex System Layout matching your reference */
-.split-view-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-.editor-pane { display: flex; flex-direction: column; gap: 8px; }
-.pane-header { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.3px; }
+/* Split View Dual Area Frame */
+.split-view-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px; }
+.editor-pane { display: flex; flex-direction: column; gap: 10px; }
+.pane-header { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; }
 
-/* Desktop Side-by-Side Workspace Control Buttons */
 .pane-link-btn { background: none; border: none; color: #2563eb; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; }
 .pane-link-btn:hover { text-decoration: underline; }
-.pane-action-btn { background: var(--primary-core); border: none; color: white; padding: 6px 12px; font-size: 12.5px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: background 0.1s; }
+.pane-action-btn { background: var(--primary-core); border: none; color: white; padding: 8px 16px; font-size: 13px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: background 0.1s; box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1); }
 .pane-action-btn:hover { background: var(--primary-hover); }
 
-textarea { width: 100%; height: 260px; padding: 16px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 14.5px; color: var(--text-main); line-height: 1.6; resize: vertical; outline: none; background: #fafafa; transition: all 0.15s ease; }
-textarea:focus { border-color: #2563eb; background: #ffffff; }
+/* Textarea Layout Mechanics */
+textarea { width: 100%; height: 320px; padding: 18px; border: 1px solid var(--border-subtle); border-radius: 8px; font-size: 14.5px; color: var(--text-main); line-height: 1.6; resize: vertical; outline: none; background: #fafafa; font-family: 'JetBrains Mono', monospace; transition: all 0.15s ease; }
+textarea:focus { border-color: #2563eb; background: #ffffff; box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.05); }
 
 .action-toolbar { display: flex; gap: 12px; border-top: 1px solid var(--border-light); padding-top: 16px; }
-.tool-btn { padding: 10px 18px; border: none; border-radius: 6px; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all 0.1s ease; }
+.tool-btn { padding: 11px 20px; border: none; border-radius: 6px; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all 0.1s ease; }
 .tool-btn.damage { background-color: #fef2f2; color: #ef4444; border: 1px solid #fee2e2; }
 .tool-btn.damage:hover { background-color: #fee2e2; }
 
-/* Grid Interface */
-.matrix-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-.matrix-card { background: var(--card-surface); padding: 24px; border-radius: 10px; border: 1px solid var(--border-light); cursor: pointer; transition: all 0.15s ease; display: flex; flex-direction: column; min-height: 170px; }
-.matrix-card:hover { transform: translateY(-3px); border-color: var(--primary-core); }
+/* Dashboard Card Grid Matrix Layout */
+.matrix-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+.matrix-card { background: var(--card-surface); padding: 24px; border-radius: 10px; border: 1px solid var(--border-light); cursor: pointer; transition: all 0.15s ease; display: flex; flex-direction: column; min-height: 170px; box-shadow: 0 2px 6px rgba(0,0,0,0.01); }
+.matrix-card:hover { transform: translateY(-3px); border-color: var(--primary-core); box-shadow: 0 8px 20px rgba(0,0,0,0.03); }
 .matrix-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
 .matrix-card p { color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 16px; flex: 1; }
 .card-action { font-size: 12px; font-weight: 700; color: #2563eb; text-transform: uppercase; }
 
-/* Footer Link Rails */
+/* Dark Footer */
 .app-footer { background-color: var(--header-dark); padding: 40px 24px; border-top: 1px solid #1e293b; margin-top: auto; text-align: center; }
 .footer-links { display: flex; justify-content: center; gap: 36px; margin-bottom: 20px; flex-wrap: wrap; }
 .footer-links a { color: #94a3b8 !important; text-decoration: none !important; font-size: 14px; font-weight: 500; transition: color 0.15s ease; }
 .footer-links a:hover { color: var(--primary-core) !important; }
 .footer-copyright { font-size: 13px; color: #475569; border-top: 1px solid #1e293b; padding-top: 20px; max-width: 600px; margin: 0 auto; }
 
-@media (max-width: 768px) {
-    .nav-container { flex-direction: column; gap: 16px; text-align: center; }
+@media (max-width: 900px) {
     .split-view-container { grid-template-columns: 1fr; }
+    .nav-container { flex-direction: column; gap: 16px; text-align: center; }
     .matrix-grid { grid-template-columns: 1fr; }
 }
