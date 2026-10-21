@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <!-- Professional Dark Navigation Header -->
+    <!-- Professional Dark Navigation Header Bar -->
     <header class="app-header">
         <div class="nav-container">
             
@@ -25,7 +25,7 @@
             
             <nav class="nav-menu">
                 <div class="menu-item-dropdown">
-                    <!-- Replaced text menu with minimalist 3 lines hamburger tracking layout symbol -->
+                    <!-- Clean Structural Hamburger 3-Line Menu Identifier -->
                     <span class="dropdown-trigger">☰ Menu</span>
                     <div class="megamenu-panel">
                         <div class="megamenu-column">
@@ -41,20 +41,20 @@
 
     <main class="app-viewport">
         
-        <!-- White Workspace Dashboard Section -->
+        <!-- White Workspace Dashboard Container Row System -->
         <section class="workspace-wrapper">
             <div class="textarea-container">
                 <textarea id="textInput" placeholder="Type or paste your text content here to start formatting..."></textarea>
                 
                 <div class="textarea-action-bar">
                     <div class="left-micro-actions">
-                        <button onclick="copyToClipboard()" class="micro-btn">📋 Copy Result</button>
+                        <button type="button" onclick="copyToClipboard()" class="micro-btn primary-micro">📋 Copy Result</button>
                         
-                        <!-- Added precise structural step action history parameters -->
-                        <button onclick="executeUndo()" class="micro-btn nav-history-btn" title="Step Back (Undo)">↺ Undo</button>
-                        <button onclick="executeRedo()" class="micro-btn nav-history-btn" title="Step Forward (Redo)">↻ Redo</button>
+                        <!-- Fixed Functional Interactive Navigation Operations Stack -->
+                        <button type="button" onclick="executeUndo()" class="micro-btn nav-history-btn" title="Step Back One Action">↺ Undo</button>
+                        <button type="button" onclick="executeRedo()" class="micro-btn nav-history-btn" title="Step Forward One Action">↻ Redo</button>
                         
-                        <button onclick="clearText()" class="micro-btn text-danger-btn">🗑️ Clear Box</button>
+                        <button type="button" onclick="clearText()" class="micro-btn text-danger-btn">🗑️ Clear Box</button>
                     </div>
                     <div class="right-live-stats">
                         Character Count: <span id="charCount">0</span> | Word Count: <span id="wordCount">0</span> | Line Count: <span id="lineCount">0</span>
@@ -66,13 +66,13 @@
             <div class="category-action-row" id="case-section">
                 <span class="row-label">Capitalization Engine:</span>
                 <div class="buttons-flex">
-                    <button onclick="runCase('sentence')" class="strip-btn sc-btn">Sentence case</button>
-                    <button onclick="runCase('lower')" class="strip-btn lc-btn">lower case</button>
-                    <button onclick="runCase('upper')" class="strip-btn uc-btn">UPPER CASE</button>
-                    <button onclick="runCase('capitalize')" class="strip-btn cc-btn">Capitalized Case</button>
-                    <button onclick="runCase('alternate')" class="strip-btn ac-btn">aLtErNaTiNg cAsE</button>
-                    <button onclick="runCase('title')" class="strip-btn tc-btn">Title Case</button>
-                    <button onclick="runCase('invert')" class="strip-btn ic-btn">InVeRsE CaSe</button>
+                    <button type="button" onclick="runCase('sentence')" class="strip-btn sc-btn">Sentence case</button>
+                    <button type="button" onclick="runCase('lower')" class="strip-btn lc-btn">lower case</button>
+                    <button type="button" onclick="runCase('upper')" class="strip-btn uc-btn">UPPER CASE</button>
+                    <button type="button" onclick="runCase('capitalize')" class="strip-btn cc-btn">Capitalized Case</button>
+                    <button type="button" onclick="runCase('alternate')" class="strip-btn ac-btn">aLtErNaTiNg cAsE</button>
+                    <button type="button" onclick="runCase('title')" class="strip-btn tc-btn">Title Case</button>
+                    <button type="button" onclick="runCase('invert')" class="strip-btn ic-btn">InVeRsE CaSe</button>
                 </div>
             </div>
 
@@ -80,11 +80,11 @@
             <div class="category-action-row" id="whitespace-section">
                 <span class="row-label">Spacing & Cleaning:</span>
                 <div class="buttons-flex">
-                    <button onclick="runClean('spaces')" class="strip-btn pc-btn">Normalize Spaces</button>
-                    <button onclick="runClean('add_necessary')" class="strip-btn highlight-blue-btn">Add Smart Spaces</button>
-                    <button onclick="runClean('blank')" class="strip-btn pc-btn">Remove Blank Lines</button>
-                    <button onclick="runClean('trim')" class="strip-btn pc-btn">Trim Edges</button>
-                    <button onclick="runClean('html')" class="strip-btn pc-btn">Strip HTML Tags</button>
+                    <button type="button" onclick="runClean('spaces')" class="strip-btn pc-btn">Normalize Spaces</button>
+                    <button type="button" onclick="runClean('add_necessary')" class="strip-btn highlight-blue-btn">Add Smart Spaces</button>
+                    <button type="button" onclick="runClean('blank')" class="strip-btn pc-btn">Remove Blank Lines</button>
+                    <button type="button" onclick="runClean('trim')" class="strip-btn pc-btn">Trim Edges</button>
+                    <button type="button" onclick="runClean('html')" class="strip-btn pc-btn">Strip HTML Tags</button>
                 </div>
             </div>
 
@@ -92,11 +92,11 @@
             <div class="category-action-row" id="lists-section">
                 <span class="row-label">List Management:</span>
                 <div class="buttons-flex">
-                    <button onclick="runList('sort_az')" class="strip-btn pc-btn">Sort A-Z List</button>
-                    <button onclick="runList('sort_za')" class="strip-btn pc-btn">Sort Z-A List</button>
-                    <button onclick="runList('dedupe')" class="strip-btn cc-btn">Remove Duplicates</button>
-                    <button onclick="runList('numbers')" class="strip-btn pc-btn">Add Line Numbers</button>
-                    <button onclick="runList('reverse')" class="strip-btn ic-btn">Reverse Rows</button>
+                    <button type="button" onclick="runList('sort_az')" class="strip-btn pc-btn">Sort A-Z List</button>
+                    <button type="button" onclick="runList('sort_za')" class="strip-btn pc-btn">Sort Z-A List</button>
+                    <button type="button" onclick="runList('dedupe')" class="strip-btn cc-btn">Remove Duplicates</button>
+                    <button type="button" onclick="runList('numbers')" class="strip-btn pc-btn">Add Line Numbers</button>
+                    <button type="button" onclick="runList('reverse')" class="strip-btn ic-btn">Reverse Rows</button>
                 </div>
             </div>
         </section>
@@ -121,7 +121,7 @@
         </section>
     </main>
 
-    <!-- Professional Dark Corporate Footer -->
+    <!-- Professional Dark Corporate Footer Bar Area -->
     <footer class="app-footer">
         <div class="footer-container">
             <p class="copyright-text">Copyright &copy; 2026 TextFormattingTools Ltd | All Rights Reserved</p>
