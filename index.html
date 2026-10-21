@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <!-- Broad Elegant Header with Multi-Column Megamenu Navigation -->
+    <!-- Header Navigation with Populated Dropdowns -->
     <header class="app-header">
         <div class="nav-container">
             
@@ -31,36 +31,57 @@
                             <a href="#" onclick="switchContext('case')">Sentence case</a>
                             <a href="#" onclick="switchContext('case')">lower case</a>
                             <a href="#" onclick="switchContext('case')">UPPER CASE</a>
-                            <a href="#" onclick="switchContext('case')">Title Case</a>
                         </div>
                         <div class="megamenu-column">
-                            <a href="#" onclick="switchContext('whitespace')">Whitespace Remover</a>
-                            <a href="#" onclick="switchContext('whitespace')">Trim Lines</a>
+                            <a href="#" onclick="switchContext('whitespace')">Whitespace Cleaner</a>
                             <a href="#" onclick="switchContext('lists')">Duplicate Line Remover</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-dropdown">
+                    <span class="dropdown-trigger">Code & Data ▾</span>
+                    <div class="megamenu-panel">
+                        <div class="megamenu-column">
+                            <a href="#" onclick="switchContext('whitespace')">Strip HTML Tags</a>
                             <a href="#" onclick="switchContext('lists')">Sort Alphabetically</a>
                         </div>
                     </div>
                 </div>
-                <div class="menu-item-dropdown"><span class="dropdown-trigger">Code & Data ▾</span></div>
-                <div class="menu-item-dropdown"><span class="dropdown-trigger">Font Styles ▾</span></div>
-                <div class="menu-item-dropdown"><span class="dropdown-trigger">Random Generators ▾</span></div>
+
+                <div class="menu-item-dropdown">
+                    <span class="dropdown-trigger">Font Styles ▾</span>
+                    <div class="megamenu-panel">
+                        <div class="megamenu-column">
+                            <a href="#" onclick="runCase('alternate')">aLtErNaTiNg cAsE</a>
+                            <a href="#" onclick="runCase('invert')">InVeRsE CaSe</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item-dropdown">
+                    <span class="dropdown-trigger">Random Generators ▾</span>
+                    <div class="megamenu-panel">
+                        <div class="megamenu-column">
+                            <a href="#" onclick="generateLorem()">Lorem Ipsum Generator</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
 
     <main class="app-viewport">
         
-        <!-- Premium Convertible Single Textarea Workspace -->
+        <!-- Interactive Single-TextArea Workspace -->
         <section class="workspace-wrapper">
             <div class="textarea-container">
                 <textarea id="textInput" placeholder="Type or paste your content here..."></textarea>
                 
-                <!-- Inner Bottom Micro Utility Action Row -->
                 <div class="textarea-action-bar">
                     <div class="left-micro-actions">
-                        <button onclick="copyToClipboard()" title="Copy to Clipboard" class="micro-btn">📋</button>
-                        <button onclick="pasteFromClipboard()" title="Paste from Clipboard" class="micro-btn">📥</button>
-                        <button onclick="clearText()" title="Clear Text" class="micro-btn">🗑️</button>
+                        <button onclick="copyToClipboard()" title="Copy Text" class="micro-btn">📋 Copy</button>
+                        <button onclick="clearText()" title="Clear Text" class="micro-btn">🗑️ Clear</button>
                     </div>
                     <div class="right-live-stats">
                         Character Count: <span id="charCount">0</span> | Word Count: <span id="wordCount">0</span> | Line Count: <span id="lineCount">0</span>
@@ -68,7 +89,7 @@
                 </div>
             </div>
 
-            <!-- In-Place Execution Button Strip (ConvertCase Pattern) -->
+            <!-- Case Action Strips -->
             <div class="execution-strip-row" id="caseActions">
                 <button onclick="runCase('sentence')" class="strip-btn sc-btn">Sentence case</button>
                 <button onclick="runCase('lower')" class="strip-btn lc-btn">lower case</button>
@@ -79,7 +100,7 @@
                 <button onclick="runCase('invert')" class="strip-btn ic-btn">InVeRsE CaSe</button>
             </div>
 
-            <!-- Contextual Option Bar for Whitespace Cleansing -->
+            <!-- Whitespace Action Strips -->
             <div class="execution-strip-row hidden-strip" id="whitespaceActions">
                 <button onclick="runClean('spaces')" class="strip-btn pc-btn">Normalize Spaces</button>
                 <button onclick="runClean('add_necessary')" class="strip-btn highlight-blue-btn">Add Smart Spaces</button>
@@ -88,7 +109,7 @@
                 <button onclick="runClean('html')" class="strip-btn pc-btn">Strip HTML Tags</button>
             </div>
 
-            <!-- Contextual Option Bar for Lists Management -->
+            <!-- List Action Strips -->
             <div class="execution-strip-row hidden-strip" id="listActions">
                 <button onclick="runList('sort_az')" class="strip-btn pc-btn">Sort A-Z</button>
                 <button onclick="runList('sort_za')" class="strip-btn pc-btn">Sort Z-A</button>
@@ -98,36 +119,23 @@
             </div>
         </section>
 
-        <!-- Services Overview Grid (ConvertCase Block Overview) -->
+        <!-- Product Overview Grid -->
         <section class="services-overview-block">
             <div class="service-card">
                 <div class="card-meta">sc</div>
                 <h3>Sentence Case Converter</h3>
-                <p>The sentence case converter will automatically capitalize the first letter of each sentence, transforming accidental capitalization down to a clean, readable layout structure.</p>
+                <p>The sentence case converter will automatically capitalize the first letter of each sentence cleanly.</p>
                 <div class="preview-box">This is an example of sentence case.</div>
             </div>
             <div class="service-card">
                 <div class="card-meta">cc</div>
                 <h3>Capitalized Case Tool</h3>
-                <p>Capitalizes the starting letter of every word while forcing all other trailing letters into lowercase blocks. Ideal for header strings and document titles.</p>
+                <p>Capitalizes the starting letter of every single word across the paragraph block.</p>
                 <div class="preview-box">This Is An Example Of Capitalized Case.</div>
-            </div>
-            <div class="service-card">
-                <div class="card-meta">ac</div>
-                <h3>Alternating Text Converter</h3>
-                <p>Transforms raw paragraph structures into characters that alternate back and forth dynamically between lowercase and uppercase variables.</p>
-                <div class="preview-box">tHiS Is aN ExAmPlE Of aLtErNaTiNg cAsE.</div>
-            </div>
-            <div class="service-card">
-                <div class="card-meta">🧼</div>
-                <h3>Whitespace Normalizer</h3>
-                <p>Collapses redundant tab spacings, strips out empty lines, and organically injects clean spacing after commas or periods.</p>
-                <div class="preview-box">Clean up raw strings effortlessly.</div>
             </div>
         </section>
     </main>
 
-    <!-- Professional Corporate Copyright Footer -->
     <footer class="app-footer">
         <div class="footer-container">
             <p class="copyright-text">Copyright &copy; 2006-2026 TextFormattingTools Ltd | All Rights Reserved</p>
