@@ -1,6 +1,0 @@
-{
-  "name": "Text Formatting Tools",
-  "description": "Free online text formatting tools inspired by ConvertCase. Fast case converter, text cleaner, list sorter, and real-time word counter.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
