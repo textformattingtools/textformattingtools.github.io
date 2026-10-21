@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Case Converter | Convert Text Case Instantly</title>
-    <meta name="description" content="Free online case converter utility. Quickly transform text blocks into UPPERCASE, lowercase, Title Case, or sentence case configurations instantly in your browser.">
+    <title>Online Case Converter & Capitalization Suite | TextFormattingTools</title>
+    <meta name="description" content="Free online case converter suite. Instantly convert text strings into UPPERCASE, lowercase, Title Case, Sentence case, and more.">
     <link rel="canonical" href="https://github.io">
-    
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,69 +13,84 @@
 </head>
 <body>
 
-    <!-- Shared Dark Header -->
     <header class="app-header">
         <div class="nav-container">
             
-                <a href="https://github.io" class="logo-text">
-                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-                    Text<span class="highlight">Formatting</span>Tools
-                </a>
+                <a href="index.html" class="logo-text">Text<span class="highlight">Formatting</span>Tools</a>
             </div>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="index.html" class="nav-link active">Case Converter</a></li>
+                    <li><a href="index.html" class="nav-link active">Case Converters</a></li>
                     <li><a href="whitespace.html" class="nav-link">Whitespace Cleaner</a></li>
+                    <li><a href="lists.html" class="nav-link">Lines & Lists</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Content Workspace Area -->
     <main class="app-viewport">
         <section class="welcome-intro-block">
-            <h2>Free Online Case Converter Suite</h2>
-            <p>Welcome to our professional text case adjustment tool. This specific interface allows you to instantly alter capitalization configurations across paragraphs without corrupting original syntax metrics.</p>
+            <h2>Case Converters & Capitalization</h2>
+            <p>Easily convert any block of text into UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, or CONSTANT_CASE. Perfect for renaming code variables, normalizing messy customer names, and formatting blog post titles.</p>
         </section>
 
+        <!-- Premium Split-View Workspace Component -->
         <section class="workspace-card">
-            <div class="editor-environment">
-                <textarea id="textInput" placeholder="Paste or type your text strings here to adjust casing structures..."></textarea>
-                
-                <div class="metrics-panel">
-                    <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
-                    <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
+            
+            <!-- Live Upper Counter Metrics Line -->
+            <div class="metrics-panel">
+                <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
+                <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
+            </div>
+
+            <!-- Dual Editor Panel Wrapper -->
+            <div class="split-view-container">
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Input Source</span>
+                        <button onclick="pasteFromClipboard()" class="pane-link-btn">Paste from Clipboard</button>
+                    </div>
+                    <textarea id="textInput" placeholder="Type or paste your source text here..."></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Formatted Output</span>
+                        <button onclick="copyToClipboard()" class="pane-action-btn primary">Copy Output</button>
+                    </div>
+                    <textarea id="textOutput" readonly placeholder="Click any formatting tool card below to see transformed output..."></textarea>
                 </div>
             </div>
 
             <div class="action-toolbar">
-                <button onclick="convertCase('upper')" class="tool-btn secondary">UPPERCASE</button>
-                <button onclick="convertCase('lower')" class="tool-btn secondary">lowercase</button>
-                <button onclick="convertCase('title')" class="tool-btn secondary">Title Case</button>
-                <button onclick="copyToClipboard()" class="tool-btn primary">Copy Text</button>
-                <button onclick="clearText()" class="tool-btn damage">Clear</button>
+                <button onclick="clearText()" class="tool-btn damage">Clear Workspace</button>
             </div>
         </section>
 
-        <!-- On-Page SEO Foundations -->
-        <article class="seo-knowledge-base">
-            <h2>Why Accurate Case Conversion Utility Matters</h2>
-            <p class="intro-paragraph">Inconsistent string text formatting lowers content editorial authority and user trust scores. Our platform runs entirely locally to guarantee prompt execution.</p>
-        </article>
+        <!-- Element Cards Grid -->
+        <section class="tools-grid-section">
+            <div class="matrix-grid">
+                <div class="matrix-card" onclick="runCase('upper')"><h3>UPPERCASE</h3><p>Convert all letters to CAPITAL letters.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('lower')"><h3>lowercase</h3><p>Convert all letters to small letters.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('title')"><h3>Title Case</h3><p>Capitalize principal words for headlines & book titles.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('sentence')"><h3>Sentence case</h3><p>Capitalize the first letter of each sentence.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('capitalize')"><h3>Capitalize Words</h3><p>Capitalize the first letter of every single word.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('camel')"><h3>camelCase</h3><p>First word lowercase, subsequent words capitalized.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('pascal')"><h3>PascalCase</h3><p>All words capitalized with no separators.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('snake')"><h3>snake_case</h3><p>Words separated by underscores in lowercase.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('kebab')"><h3>kebab-case</h3><p>Words separated by hyphens (ideal for URLs and CSS).</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('constant')"><h3>CONSTANT_CASE</h3><p>All uppercase words separated by underscores.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('dot')"><h3>dot.case</h3><p>Words separated by periods / dots.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('path')"><h3>path/case</h3><p>Words separated by forward slashes.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('alternate')"><h3>aLtErNaTiNg cAsE</h3><p>Alternate lowercase and uppercase characters.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runCase('invert')"><h3>Invert Case</h3><p>Invert uppercase to lowercase and vice versa.</p><span class="card-action">Click to run</span></div>
+            </div>
+        </section>
     </main>
 
-    <!-- Shared Dark Footer -->
     <footer class="app-footer">
         <div class="footer-container">
-            <nav class="footer-links" aria-label="Footer Navigation">
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms & FAQ</a>
-            </nav>
-            <div class="footer-copyright">
-                <p>&copy; 2026 TextFormattingTools. All rights reserved. Clean client-side engineering structures.</p>
-            </div>
+            <nav class="footer-links"><a href="#">About Us</a><a href="#">Contact Us</a><a href="#">Privacy Policy</a><a href="#">Terms & FAQ</a></nav>
+            <div class="footer-copyright"><p>&copy; 2026 TextFormattingTools. All rights reserved.</p></div>
         </div>
     </footer>
 
