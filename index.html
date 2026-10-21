@@ -3,99 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Case Converter & Capitalization Suite | TextFormattingTools</title>
-    <meta name="description" content="Free online case converter suite. Instantly convert text strings into UPPERCASE, lowercase, Title Case, Sentence case, and more.">
-    <link rel="canonical" href="https://github.io">
+    <title>Text Formatting Tools - Premium Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for premium appearance -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="app-header">
-        <div class="nav-container">
-            
-                <a href="index.html" class="logo-text">
-                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-                    Text <span class="highlight">Formatting</span> Tools
-                </a>
-            </div>
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="index.html" class="nav-link active">Case Converters</a></li>
-                    <li><a href="whitespace.html" class="nav-link">Whitespace Cleaner</a></li>
-                    <li><a href="lists.html" class="nav-link">Lines & Lists</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="logo">textformattingtools</div>
+        <div class="badge">v2.0 Stable</div>
     </header>
 
-    <main class="app-viewport">
-        <section class="welcome-intro-block">
-            <h2>Case Converters & Capitalization</h2>
-            <p>Easily convert any block of text into UPPERCASE, lowercase, Title Case, or Sentence case. Run conversions using the quick-action menu right above the workspace for instant side-by-side results.</p>
-        </section>
-
-        <!-- Premium Dashboard Workspace Component -->
-        <section class="workspace-card">
+    <main class="workspace-container">
+        <!-- Control Dashboard Grid Container -->
+        <section class="tools-panel">
+            <h2 class="panel-title">Transformation Tools</h2>
             
-            <!-- Quick-Action Menu Implemented on Top for Superior UI/UX -->
-            <div class="top-action-bar">
-                <button onclick="runCase('upper')" class="action-bar-btn">UPPERCASE</button>
-                <button onclick="runCase('lower')" class="action-bar-btn">lowercase</button>
-                <button onclick="runCase('title')" class="action-bar-btn">Title Case</button>
-                <button onclick="runCase('sentence')" class="action-bar-btn">Sentence Case</button>
-            </div>
-
-            <div class="metrics-panel">
-                <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
-                <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
-            </div>
-
-            <div class="split-view-container">
-                <div class="editor-pane">
-                    <div class="pane-header">
-                        <span>Input Source</span>
-                        <button onclick="pasteFromClipboard()" class="pane-link-btn">Paste from Clipboard</button>
-                    </div>
-                    <textarea id="textInput" placeholder="Type or paste your source text here..."></textarea>
-                </div>
-                <div class="editor-pane">
-                    <div class="pane-header">
-                        <span>Formatted Output</span>
-                        <button onclick="copyToClipboard()" class="pane-action-btn primary">Copy Output</button>
-                    </div>
-                    <textarea id="textOutput" readonly placeholder="Your transformed output will appear here instantly..."></textarea>
+            <div class="tools-group">
+                <h3>Standard Conversions</h3>
+                <div class="button-grid">
+                    <button class="case-btn active" data-case="lowercase">lowercase</button>
+                    <button class="case-btn" data-case="uppercase">UPPERCASE</button>
+                    <button class="case-btn" data-case="title">Title Case</button>
+                    <button class="case-btn" data-case="sentence">Sentence case</button>
+                    <button class="case-btn" data-case="capitalize">Capitalize Words</button>
                 </div>
             </div>
 
-            <div class="action-toolbar">
-                <button onclick="clearText()" class="tool-btn damage">Clear Workspace</button>
+            <div class="tools-group">
+                <h3>Developer Cases</h3>
+                <div class="button-grid">
+                    <button class="case-btn" data-case="camel">camelCase</button>
+                    <button class="case-btn" data-case="pascal">PascalCase</button>
+                    <button class="case-btn" data-case="snake">snake_case</button>
+                    <button class="case-btn" data-case="kebab">kebab-case</button>
+                </div>
+            </div>
+
+            <div class="workspace-actions">
+                <button id="clear-btn" class="action-btn secondary">Clear Workspace</button>
             </div>
         </section>
 
-        <!-- Informational Cards Grid -->
-        <section class="tools-grid-section">
-            <div class="matrix-grid">
-                <div class="matrix-card" onclick="runCase('upper')"><h3>UPPERCASE</h3><p>Convert all letters to CAPITAL letters.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('lower')"><h3>lowercase</h3><p>Convert all letters to small letters.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('title')"><h3>Title Case</h3><p>Capitalize principal words for headlines & book titles.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('sentence')"><h3>Sentence case</h3><p>Capitalize the first letter of each sentence.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('capitalize')"><h3>Capitalize Words</h3><p>Capitalize the first letter of every single word.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('camel')"><h3>camelCase</h3><p>First word lowercase, subsequent words capitalized.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('pascal')"><h3>PascalCase</h3><p>All words capitalized with no separators.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('snake')"><h3>snake_case</h3><p>Words separated by underscores in lowercase.</p><span class="card-action">Click to run</span></div>
+        <!-- Twin Text Editors Section -->
+        <section class="editors-panel">
+            <div class="editor-box">
+                <div class="editor-header">
+                    <span>Input Source</span>
+                    <div class="counters">
+                        <span>Words: <strong id="word-count">0</strong></span>
+                        <span>Chars: <strong id="char-count">0</strong></span>
+                    </div>
+                </div>
+                <textarea id="input-text" placeholder="Paste or type your raw text content here..."></textarea>
+            </div>
+
+            <div class="editor-box">
+                <div class="editor-header">
+                    <span>Formatted Output</span>
+                    <button id="copy-btn" class="action-btn primary">Copy Output</button>
+                </div>
+                <textarea id="output-text" readonly placeholder="Your formatted text will automatically display here..."></textarea>
             </div>
         </section>
     </main>
-
-    <footer class="app-footer">
-        <div class="footer-container">
-            <nav class="footer-links"><a href="#">About Us</a><a href="#">Contact Us</a><a href="#">Privacy Policy</a><a href="#">Terms & FAQ</a></nav>
-            <div class="footer-copyright"><p>&copy; 2026 TextFormattingTools. All rights reserved.</p></div>
-        </div>
-    </header>
 
     <script src="script.js"></script>
 </body>
