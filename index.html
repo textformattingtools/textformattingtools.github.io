@@ -1,389 +1,101 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Free Online Text Formatting Tools | TextFormattingTools</title>
-
-    <meta name="description"
-          content="Format text online for free. Convert uppercase and lowercase, clean extra spaces, remove HTML tags, sort lists, count words, and organize text instantly.">
-
-    <meta name="robots" content="index, follow">
-
-    <link rel="canonical"
-          href="https://txtformattingtools.github.io/">
-
-    <meta name="theme-color" content="#111827">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title"
-          content="Free Online Text Formatting Tools">
-    <meta property="og:description"
-          content="Convert text case, clean spacing, organize lists, and format text with free online tools.">
-    <meta property="og:url"
-          content="https://txtformattingtools.github.io/">
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free Online Text Formatting Tools</title>
+    <meta name="description" content="Format text online for free. Convert case, clean spaces, sort lists, and count words and characters using simple text tools.">
+    <link rel="canonical" href="https://txtformattingtools.github.io/">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
+<header class="site-header">
+    <a class="logo" href="index.html">Text Formatting Tools</a>
+    <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="case-converter.html">Case Converter</a>
+        <a href="text-cleaner.html">Text Cleaner</a>
+        <a href="sort-lines.html">Sort Lines</a>
+        <a href="word-counter.html">Word Counter</a>
+    </nav>
+</header>
 
-    <!-- Main Header -->
-    <header class="app-header">
-        <div class="nav-container">
+<main class="container">
+    <h1>Free Online Text Formatting Tools</h1>
+    <p class="intro">Convert text, fix spacing, organize lists, and count words in one simple workspace.</p>
 
-            <a href="./"
-               class="logo-text"
-               aria-label="Text Formatting Tools home">
+    <section class="workspace">
+        <label for="textInput">Enter or paste your text</label>
+        <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
 
-                <svg class="logo-icon"
-                     viewBox="0 0 24 24"
-                     fill="none"
-                     stroke="currentColor"
-                     stroke-width="2.5"
-                     aria-hidden="true">
-
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                </svg>
-
-                Text <span class="highlight">Formatting</span> Tools
-            </a>
-
-            <nav class="nav-menu-bar"
-                 aria-label="Main navigation">
-
-                <a href="#case-section"
-                   class="header-anchor-link">
-                    Case Converter
-                </a>
-
-                <a href="#whitespace-section"
-                   class="header-anchor-link">
-                    Spacing Cleaners
-                </a>
-
-                <a href="#lists-section"
-                   class="header-anchor-link">
-                    List Manager
-                </a>
-
-            </nav>
+        <div class="toolbar">
+            <button data-action="copy">Copy Text</button>
+            <button data-action="undo">Undo</button>
+            <button data-action="redo">Redo</button>
+            <button data-action="clear">Clear</button>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="app-viewport">
-
-        <!-- Introduction -->
-        <section class="intro-section">
-            <h1>Free Online Text Formatting Tools</h1>
-
-            <p>
-                Make your text easier to read and organize with free
-                online formatting tools. Change letter case, remove
-                extra spaces, clean HTML tags, and sort lists in seconds.
-            </p>
-        </section>
-
-        <!-- Text Workspace -->
-        <section class="workspace-wrapper"
-                 aria-label="Text formatting workspace">
-
-            <div class="textarea-container">
-
-                <label for="textInput">
-                    Enter or paste your text
-                </label>
-
-                <textarea
-                    id="textInput"
-                    placeholder="Type or paste your text here to start formatting..."
-                    aria-describedby="text-stats"
-                    spellcheck="true"></textarea>
-
-                <div class="textarea-action-bar">
-
-                    <div class="left-micro-actions">
-
-                        <button type="button"
-                                onclick="copyToClipboard()"
-                                class="micro-btn primary-micro">
-                            Copy Result
-                        </button>
-
-                        <button type="button"
-                                onclick="executeUndo()"
-                                class="micro-btn nav-history-btn"
-                                title="Undo the previous action">
-                            Undo
-                        </button>
-
-                        <button type="button"
-                                onclick="executeRedo()"
-                                class="micro-btn nav-history-btn"
-                                title="Redo the previous action">
-                            Redo
-                        </button>
-
-                        <button type="button"
-                                onclick="clearText()"
-                                class="micro-btn text-danger-btn">
-                            Clear Text
-                        </button>
-
-                    </div>
-
-                    <div class="right-live-stats"
-                         id="text-stats"
-                         aria-live="polite"
-                         aria-atomic="true">
-
-                        Characters:
-                        <span id="charCount">0</span>
-
-                        | Words:
-                        <span id="wordCount">0</span>
-
-                        | Lines:
-                        <span id="lineCount">0</span>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Case Conversion Tools -->
-            <section class="category-action-row"
-                     id="case-section"
-                     aria-labelledby="case-heading">
-
-                <h2 class="row-label" id="case-heading">
-                    Text Case Converter
-                </h2>
-
-                <div class="buttons-flex">
-
-                    <button type="button"
-                            onclick="runCase('sentence')"
-                            class="strip-btn sc-btn">
-                        Sentence Case
-                    </button>
-
-                    <button type="button"
-                            onclick="runCase('lower')"
-                            class="strip-btn lc-btn">
-                        lowercase
-                    </button>
-
-                    <button type="button"
-                            onclick="runCase('upper')"
-                            class="strip-btn uc-btn">
-                        UPPERCASE
-                    </button>
-
-                    <button type="button"
-                            onclick="runCase('capitalize')"
-                            class="strip-btn cc-btn">
-                        Capitalized Case
-                    </button>
-
-                    <button type="button"
-                            onclick="runCase('alternate')"
-                            class="strip-btn ac-btn">
-                        aLtErNaTiNg CaSe
-                    </button>
-
-                    <button type="button"
-                            onclick="runCase('title')"
-                            class="strip-btn tc-btn">
-                        Title Case
-                    </button>
-
-                    <button type="button"
-                            onclick="runCase('invert')"
-                            class="strip-btn ic-btn">
-                        Invert Case
-                    </button>
-
-                </div>
-            </section>
-
-            <!-- Spacing and Cleaning Tools -->
-            <section class="category-action-row"
-                     id="whitespace-section"
-                     aria-labelledby="spacing-heading">
-
-                <h2 class="row-label" id="spacing-heading">
-                    Spacing and Text Cleaning
-                </h2>
-
-                <div class="buttons-flex">
-
-                    <button type="button"
-                            onclick="runClean('spaces')"
-                            class="strip-btn pc-btn">
-                        Normalize Spaces
-                    </button>
-
-                    <button type="button"
-                            onclick="runClean('add_necessary')"
-                            class="strip-btn highlight-blue-btn">
-                        Add Smart Spaces
-                    </button>
-
-                    <button type="button"
-                            onclick="runClean('blank')"
-                            class="strip-btn pc-btn">
-                        Remove Blank Lines
-                    </button>
-
-                    <button type="button"
-                            onclick="runClean('trim')"
-                            class="strip-btn pc-btn">
-                        Trim Edges
-                    </button>
-
-                    <button type="button"
-                            onclick="runClean('html')"
-                            class="strip-btn pc-btn">
-                        Strip HTML Tags
-                    </button>
-
-                </div>
-            </section>
-
-            <!-- List Management Tools -->
-            <section class="category-action-row"
-                     id="lists-section"
-                     aria-labelledby="lists-heading">
-
-                <h2 class="row-label" id="lists-heading">
-                    List Sorting and Management
-                </h2>
-
-                <div class="buttons-flex">
-
-                    <button type="button"
-                            onclick="runList('sort_az')"
-                            class="strip-btn pc-btn">
-                        Sort A–Z
-                    </button>
-
-                    <button type="button"
-                            onclick="runList('sort_za')"
-                            class="strip-btn pc-btn">
-                        Sort Z–A
-                    </button>
-
-                    <button type="button"
-                            onclick="runList('dedupe')"
-                            class="strip-btn cc-btn">
-                        Remove Duplicates
-                    </button>
-
-                    <button type="button"
-                            onclick="runList('numbers')"
-                            class="strip-btn pc-btn">
-                        Add Line Numbers
-                    </button>
-
-                    <button type="button"
-                            onclick="runList('reverse')"
-                            class="strip-btn ic-btn">
-                        Reverse Lines
-                    </button>
-
-                </div>
-            </section>
-
-        </section>
-
-        <!-- Tool Information -->
-        <section class="services-overview-block"
-                 aria-label="About the text formatting tools">
-
-            <article class="service-card">
-                <div class="card-meta" aria-hidden="true">Aa</div>
-
-                <h2>Text Case Converter</h2>
-
-                <p>
-                    Change text to uppercase, lowercase, sentence case,
-                    title case, or other letter formats. These tools
-                    are useful for editing articles, headings, notes,
-                    and everyday documents.
-                </p>
-            </article>
-
-            <article class="service-card">
-                <div class="card-meta" aria-hidden="true">✂</div>
-
-                <h2>Spacing and Text Cleaner</h2>
-
-                <p>
-                    Remove unwanted blank lines, trim extra spaces,
-                    and clean text copied from websites or documents.
-                    Strip HTML tags when you need plain text.
-                </p>
-            </article>
-
-            <article class="service-card">
-                <div class="card-meta" aria-hidden="true">123</div>
-
-                <h2>List Sorting Tools</h2>
-
-                <p>
-                    Arrange lines alphabetically, reverse their order,
-                    add line numbers, or remove duplicate entries.
-                    Organize lists without manually editing every line.
-                </p>
-            </article>
-
-        </section>
-
-        <!-- How to Use -->
-        <section class="how-to-section">
-            <h2>How to Use These Text Tools</h2>
-
-            <ol>
-                <li>Type or paste your text into the text box.</li>
-                <li>Choose a formatting, cleaning, or sorting tool.</li>
-                <li>Review the result in the text box.</li>
-                <li>Copy the formatted text when you are satisfied.</li>
-            </ol>
-
-            <p>
-                Choose the appropriate tool for your task and review
-                the result before using it in another document.
-            </p>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="app-footer">
-        <div class="footer-container">
-            <p class="copyright-text">
-                &copy; 2026 Text Formatting Tools.
-                All rights reserved.
-            </p>
+        <p class="stats" aria-live="polite">
+            Characters: <span id="charCount">0</span> |
+            Words: <span id="wordCount">0</span> |
+            Lines: <span id="lineCount">0</span>
+        </p>
+    </section>
+
+    <section class="tool-section">
+        <h2>Text Case Converter</h2>
+        <div class="button-group">
+            <button data-case="upper">UPPER CASE</button>
+            <button data-case="lower">lower case</button>
+            <button data-case="sentence">Sentence case</button>
+            <button data-case="title">Title Case</button>
+            <button data-case="capitalize">Capitalize Words</button>
+            <button data-case="alternate">aLtErNaTe CaSe</button>
+            <button data-case="invert">Invert Case</button>
         </div>
-    </footer>
+        <p><a href="case-converter.html">Open the Case Converter page →</a></p>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="tool-section">
+        <h2>Clean and Format Text</h2>
+        <div class="button-group">
+            <button data-clean="spaces">Normalize Spaces</button>
+            <button data-clean="smart">Add Spaces After Punctuation</button>
+            <button data-clean="blank">Remove Blank Lines</button>
+            <button data-clean="trim">Trim Lines</button>
+            <button data-clean="html">Remove HTML Tags</button>
+        </div>
+        <p><a href="text-cleaner.html">Open the Text Cleaner page →</a></p>
+    </section>
 
+    <section class="tool-section">
+        <h2>Sort and Manage Lists</h2>
+        <div class="button-group">
+            <button data-list="az">Sort A–Z</button>
+            <button data-list="za">Sort Z–A</button>
+            <button data-list="dedupe">Remove Duplicates</button>
+            <button data-list="numbers">Add Line Numbers</button>
+            <button data-list="reverse">Reverse Lines</button>
+        </div>
+        <p><a href="sort-lines.html">Open the List Sorter page →</a></p>
+    </section>
+
+    <section class="tool-section">
+        <h2>How to Use These Tools</h2>
+        <ol>
+            <li>Paste your text into the box above.</li>
+            <li>Select a tool to format or organize your text.</li>
+            <li>Review the result in the text box.</li>
+            <li>Copy the result when you are ready.</li>
+        </ol>
+        <p>Need word counts only? <a href="word-counter.html">Open the Word Counter →</a></p>
+    </section>
+</main>
+
+<footer>
+    <p>Text Formatting Tools · Free online text utilities</p>
+</footer>
 </body>
 </html>
