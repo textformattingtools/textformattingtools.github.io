@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Whitespace Cleaner | Normalize Spaces & Tabs</title>
-    <meta name="description" content="Free online whitespace cleanup formatting utility. Instantly remove double spaces, scrub tabs, or clean blank lines from text structures directly inside your browser.">
+    <title>Deduplication & Whitespace Cleaning Suite | TextFormattingTools</title>
+    <meta name="description" content="Free online whitespace tools. Normalize multi-space indentations, remove empty lines, trim gaps, strip HTML tags, and filter text records instantly.">
     <link rel="canonical" href="https://github.io">
-    
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,68 +13,76 @@
 </head>
 <body>
 
-    <!-- Shared Dark Header -->
     <header class="app-header">
         <div class="nav-container">
             
-                <a href="https://github.io" class="logo-text">
-                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-                    Text<span class="highlight">Formatting</span>Tools
-                </a>
+                <a href="index.html" class="logo-text">Text<span class="highlight">Formatting</span>Tools</a>
             </div>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="index.html" class="nav-link">Case Converter</a></li>
+                    <li><a href="index.html" class="nav-link">Case Converters</a></li>
                     <li><a href="whitespace.html" class="nav-link active">Whitespace Cleaner</a></li>
+                    <li><a href="lists.html" class="nav-link">Lines & Lists</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Content Workspace Area -->
     <main class="app-viewport">
         <section class="welcome-intro-block">
-            <h2>Free Online Whitespace Cleanup Workspace</h2>
-            <p>Welcome to our dedicated whitespace normalization utility. Remove redundant tab spacing strings, trim leading line ends, or collapse excessive line breaks with a single operational button click.</p>
+            <h2>Deduplication & Whitespace Cleaning</h2>
+            <p>Normalize multi-space indentations into clean single spaces, remove empty lines, trim leading and trailing gaps, and strip unwanted HTML or XML tags. Eliminate duplicates from massive email lists or spreadsheet exports while preserving the natural line order.</p>
         </section>
 
+        <!-- Premium Split-View Workspace Component -->
         <section class="workspace-card">
-            <div class="editor-environment">
-                <textarea id="textInput" placeholder="Paste your messy text data strings here to execute spacing cleanup operations..."></textarea>
-                
-                <div class="metrics-panel">
-                    <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
-                    <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
+            <div class="metrics-panel">
+                <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
+                <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
+            </div>
+
+            <div class="split-view-container">
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Input Source</span>
+                        <button onclick="pasteFromClipboard()" class="pane-link-btn">Paste from Clipboard</button>
+                    </div>
+                    <textarea id="textInput" placeholder="Type or paste your source text here..."></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Formatted Output</span>
+                        <button onclick="copyToClipboard()" class="pane-action-btn primary">Copy Output</button>
+                    </div>
+                    <textarea id="textOutput" readonly placeholder="Click any formatting tool card below to see transformed output..."></textarea>
                 </div>
             </div>
 
             <div class="action-toolbar">
-                <button onclick="cleanWhitespace('spaces')" class="tool-btn secondary">Remove Extra Spaces</button>
-                <button onclick="cleanWhitespace('lines')" class="tool-btn secondary">Remove Blank Lines</button>
-                <button onclick="copyToClipboard()" class="tool-btn primary">Copy Text</button>
-                <button onclick="clearText()" class="tool-btn damage">Clear</button>
+                <button onclick="clearText()" class="tool-btn damage">Clear Workspace</button>
             </div>
         </section>
 
-        <!-- On-Page SEO Foundations -->
-        <article class="seo-knowledge-base">
-            <h2>The Value of Clean String Paragraph Data Sets</h2>
-            <p class="intro-paragraph">Hidden formatting characters and double indentation errors often cause failures when migrating data across spreadsheets or code arrays. Normalizing spacing variables removes these hurdles instantly.</p>
-        </article>
+        <!-- Element Cards Grid -->
+        <section class="tools-grid-section">
+            <div class="matrix-grid">
+                <div class="matrix-card" onclick="runClean('spaces')"><h3>Normalize Extra Spaces</h3><p>Collapse multiple spaces into a single space.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('blank')"><h3>Remove Blank Lines</h3><p>Delete all empty or whitespace-only lines.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('trim')"><h3>Trim Lines</h3><p>Remove leading and trailing whitespace from each line.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('unwrap')"><h3>Unwrap Paragraphs</h3><p>Turn broken lines back into fluid paragraphs.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('html')"><h3>Strip HTML Tags</h3><p>Remove HTML / XML markup and keep pure text.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('accents')"><h3>Remove Accents (Diacritics)</h3><p>Convert accented letters (é, ñ, ü) to standard ASCII equivalents.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('emojis')"><h3>Remove Emojis</h3><p>Purge all emoji symbols from text fields.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('allspaces')"><h3>Remove All Spaces</h3><p>Strip every space, tab, and whitespace character.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('tabs')"><h3>Tabs to Spaces (2)</h3><p>Replace tab indentations with 2 spaces.</p><span class="card-action">Click to run</span></div>
+            </div>
+        </section>
     </main>
 
-    <!-- Shared Dark Footer -->
     <footer class="app-footer">
         <div class="footer-container">
-            <nav class="footer-links" aria-label="Footer Navigation">
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms & FAQ</a>
-            </nav>
-            <div class="footer-copyright">
-                <p>&copy; 2026 TextFormattingTools. All rights reserved. Clean client-side engineering structures.</p>
-            </div>
+            <nav class="footer-links"><a href="#">About Us</a><a href="#">Contact Us</a><a href="#">Privacy Policy</a><a href="#">Terms & FAQ</a></nav>
+            <div class="footer-copyright"><p>&copy; 2026 TextFormattingTools. All rights reserved.</p></div>
         </div>
     </footer>
 
