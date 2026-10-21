@@ -1,100 +1,87 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const inputArea = document.getElementById("input-text");
-    const outputArea = document.getElementById("output-text");
-    const wordCountElement = document.getElementById("word-count");
-    const charCountElement = document.getElementById("char-count");
-    const copyButton = document.getElementById("copy-btn");
-    const clearButton = document.getElementById("clear-btn");
-    const modeButtons = document.querySelectorAll(".case-btn");
+const textInput = document.getElementById('textInput');
+const wordCount = document.getElementById('wordCount');
+const charCount = document.getElementById('charCount');
+const lineCount = document.getElementById('lineCount');
 
-    let currentFormatMode = "lowercase";
+if (textInput) {
+    textInput.addEventListener('input', runLiveMetrics);
+}
 
-    // Live Processing Loop
-    inputArea.addEventListener("input", () => {
-        processText();
-    });
+function runLiveMetrics() {
+    const text = textInput.value;
+    charCount.textContent = text.length;
+    wordCount.textContent = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+    lineCount.textContent = text === '' ? 0 : text.split('\n').length;
+}
 
-    // Option Toggles
-    modeButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            modeButtons.forEach(btn => btn.classList.remove("active"));
-            e.target.classList.add("active");
-            currentFormatMode = e.target.dataset.case;
-            processText();
-        });
-    });
+// Drops down panel tab context shifting engine controls
+function switchContext(category) {
+    document.getElementById('caseActions').classList.add('hidden-strip');
+    document.getElementById('whitespaceActions').classList.add('hidden-strip');
+    document.getElementById('listActions').classList.add('hidden-strip');
 
-    // Clear Workspace Function
-    clearButton.addEventListener("click", () => {
-        inputArea.value = "";
-        outputArea.value = "";
-        updateMetrics("");
-    });
-
-    // Copy Utility
-    copyButton.addEventListener("click", () => {
-        if (!outputArea.value) return;
-        navigator.clipboard.writeText(outputArea.value).then(() => {
-            const defaultText = copyButton.textContent;
-            copyButton.textContent = "Copied! ✓";
-            copyButton.style.backgroundColor = "var(--success)";
-            setTimeout(() => {
-                copyButton.textContent = defaultText;
-                copyButton.style.backgroundColor = "";
-            }, 1800);
-        });
-    });
-
-    // String Pipeline
-    function processText() {
-        const value = inputArea.value;
-        updateMetrics(value);
-
-        if (!value) {
-            outputArea.value = "";
-            return;
-        }
-
-        switch (currentFormatMode) {
-            case "lowercase":
-                outputArea.value = value.toLowerCase();
-                break;
-            case "uppercase":
-                outputArea.value = value.toUpperCase();
-                break;
-            case "title":
-                outputArea.value = value.replace(/\b[a-z]/gi, char => char.toUpperCase());
-                break;
-            case "sentence":
-                outputArea.value = value.toLowerCase().replace(/(^\s*|[.!?]\s+)([a-z])/g, char => char.toUpperCase());
-                break;
-            case "capitalize":
-                outputArea.value = value.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(" ");
-                break;
-            case "camel":
-                outputArea.value = toWordsArray(value).map((word, i) => i === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join("");
-                break;
-            case "pascal":
-                outputArea.value = toWordsArray(value).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join("");
-                break;
-            case "snake":
-                outputArea.value = toWordsArray(value).map(word => word.toLowerCase()).join("_");
-                break;
-            case "kebab":
-                outputArea.value = toWordsArray(value).map(word => word.toLowerCase()).join("-");
-                break;
-            default:
-                outputArea.value = value;
-        }
+    if (category === 'case') {
+        document.getElementById('caseActions').classList.remove('hidden-strip');
+    } else if (category === 'whitespace') {
+        document.getElementById('whitespaceActions').classList.remove('hidden-strip');
+    } else if (category === 'lists') {
+        document.getElementById('listActions').classList.remove('hidden-strip');
     }
+}
 
-    function toWordsArray(str) {
-        return str.replace(/[^a-zA-Z0-9\s]/g, "").trim().split(/\s+/).filter(Boolean);
-    }
+// 1. In-Place Case Conversions Execution
+function runCase(type) {
+    let txt = textInput.value; if (!txt || txt.trim() === '') return;
+    if (type === 'upper') textInput.value = txt.toUpperCase();
+    else if (type === 'lower') textInput.value = txt.toLowerCase();
+    else if (type === 'title') textInput.value = txt.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    else if (type === 'sentence') textInput.value = txt.toLowerCase().replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
+    else if (type === 'capitalize') textInput.value = txt.replace(/\b([a-z])/g, (m) => m.toUpperCase());
+    else if (type === 'alternate') textInput.value = txt.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join('');
+    else if (type === 'invert') textInput.value = txt.split('').map((c) => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+    runLiveMetrics();
+}
 
-    function updateMetrics(text) {
-        charCountElement.textContent = text.length;
-        const words = text.trim().split(/\s+/).filter(Boolean);
-        wordCountElement.textContent = words.length;
+// 2. In-Place Whitespace Parsing Engine
+function runClean(type) {
+    let txt = textInput.value; if (!txt || txt.trim() === '') return;
+    if (type === 'spaces') textInput.value = txt.replace(/[ \t]+/g, ' ').trim();
+    else if (type === 'add_necessary') textInput.value = txt.replace(/([.,!?;:])([A-Za-z0-9])/g, '\$1 \$2');
+    else if (type === 'blank') textInput.value = txt.split('\n').filter(line => line.trim() !== '').join('\n');
+    else if (type === 'trim') textInput.value = txt.split('\n').map(line => line.trim()).join('\n');
+    else if (type === 'html') textInput.value = txt.replace(/<\/?[^>]+(>|\$)/g, "");
+    runLiveMetrics();
+}
+
+// 3. In-Place List Arrangement Sorting
+function runList(type) {
+    let txt = textInput.value; if (!txt || txt.trim() === '') return;
+    let lines = txt.split('\n');
+    if (type === 'sort_az') textInput.value = lines.sort((a, b) => a.localeCompare(b)).join('\n');
+    else if (type === 'sort_za') textInput.value = lines.sort((a, b) => b.localeCompare(a)).join('\n');
+    else if (type === 'reverse') textInput.value = lines.reverse().join('\n');
+    else if (type === 'numbers') textInput.value = lines.map((line, idx) => `${idx + 1}. ${line}`).join('\n');
+    else if (type === 'dedupe') textInput.value = [...new Set(lines)].join('\n');
+    runLiveMetrics();
+}
+
+async function pasteFromClipboard() {
+    try {
+        textInput.value = await navigator.clipboard.readText();
+        runLiveMetrics();
+    } catch (err) {
+        alert('Please grant clipboard access permissions to execute paste command layouts.');
     }
-});
+}
+
+function copyToClipboard() {
+    if (!textInput.value) return;
+    textInput.select();
+    document.execCommand('copy');
+    alert('Content successfully copied to clipboard!');
+}
+
+function clearText() {
+    textInput.value = '';
+    runLiveMetrics();
+}
