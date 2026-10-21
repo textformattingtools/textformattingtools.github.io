@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sort Lines - Alphabetical A-Z, Z-A, Reverse &amp; Deduplicate Lists</title>
+    <meta name="description" content="Sort lists and text lines alphabetically (A-Z, Z-A), natural number sort, reverse list order, remove duplicate lines, shuffle, and number lines." />
+    <meta property="og:title" content="Sort Lines - Alphabetical A-Z, Z-A, Reverse &amp; Deduplicate Lists" />
+    <meta property="og:description" content="Fast online line and list sorter. Alphabetize lines, natural sort numbers, remove duplicate entries, and number lines." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-link" title="Text Formatting Tools">
+          <span class="brand-icon">Tt</span>
+          <span>Text Formatting Tools</span>
+        </a>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html" class="nav-link">All Tools</a></li>
+          <li><a href="case-converter.html" class="nav-link">Case Converter</a></li>
+          <li><a href="text-cleaner.html" class="nav-link">Text Cleaner</a></li>
+          <li><a href="sort-lines.html" class="nav-link active">Sort Lines</a></li>
+          <li><a href="word-counter.html" class="nav-link">Word Counter</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Intro -->
+        <div class="page-intro">
+          <h1 class="page-title">Sort Lines &amp; List Tools</h1>
+          <p class="page-desc">
+            Organize, alphabetize, deduplicate, and rearrange line-by-line lists. Ideal for email contact lists, inventory items, keyword arrays, to-do items, and programming datasets.
+          </p>
+        </div>
+
+        <!-- Editor Card -->
+        <div class="editor-card">
+          <!-- Editor Top Toolbar -->
+          <div class="editor-toolbar">
+            <div class="toolbar-group">
+              <button id="btn-sample" type="button" class="btn btn-sm" title="Load sample list with mixed numbers and duplicates">
+                Sample List
+              </button>
+              <button id="btn-font-toggle" type="button" class="btn btn-sm" title="Toggle font between Sans and Monospace">
+                Font: Sans
+              </button>
+              <button id="btn-find-replace-toggle" type="button" class="btn btn-sm" title="Open Find & Replace tool">
+                Find &amp; Replace
+              </button>
+            </div>
+
+            <div class="toolbar-group">
+              <input type="file" id="file-input" class="visually-hidden" accept=".txt,.text,.md,.csv,.html,.json" />
+              <button id="btn-upload" type="button" class="btn btn-sm" title="Load text or CSV file">
+                Open File
+              </button>
+              <button id="btn-download" type="button" class="btn btn-sm" title="Download sorted list as .txt">
+                Download .txt
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Textarea -->
+          <textarea
+            id="editor"
+            class="editor-textarea"
+            placeholder="Paste your list here (one item per line)..."
+            spellcheck="false"
+          ></textarea>
+
+          <!-- Live Stats Bar -->
+          <div class="stats-bar">
+            <div class="stat-item">
+              <span class="stat-label">Total Lines:</span>
+              <span id="stat-lines" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Words:</span>
+              <span id="stat-words" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Characters:</span>
+              <span id="stat-chars" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Reading time:</span>
+              <span id="stat-reading-time" class="stat-value">0s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+          <div class="action-bar-left">
+            <button id="btn-copy" type="button" class="btn btn-primary" title="Copy sorted list to clipboard">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copy to Clipboard
+            </button>
+            <button id="btn-clear" type="button" class="btn btn-danger" title="Clear list">
+              Clear List
+            </button>
+          </div>
+
+          <div class="action-bar-right">
+            <button id="btn-undo" type="button" class="btn" disabled title="Undo last sorting action">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7v6h6"></path>
+                <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+              </svg>
+              Undo
+            </button>
+            <button id="btn-redo" type="button" class="btn" disabled title="Redo sorting action">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 7v6h-6"></path>
+                <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+              </svg>
+              Redo
+            </button>
+          </div>
+        </div>
+
+        <!-- Find & Replace Drawer -->
+        <div id="find-replace-panel" class="find-replace-panel">
+          <input type="text" id="find-input" class="input-field" placeholder="Search list..." />
+          <input type="text" id="replace-input" class="input-field" placeholder="Replace with..." />
+          <label class="form-check">
+            <input type="checkbox" id="match-case-check" /> Match case
+          </label>
+          <label class="form-check">
+            <input type="checkbox" id="regex-check" /> Regular expression
+          </label>
+          <button id="btn-do-replace" type="button" class="btn btn-sm">Replace Next</button>
+          <button id="btn-do-replace-all" type="button" class="btn btn-sm btn-primary">Replace All</button>
+        </div>
+
+        <!-- Line Sorting Tools -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Sorting &amp; Ordering Options</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="sort-az">
+              Sort A &rarr; Z (Alphabetical)
+            </button>
+            <button type="button" class="btn btn-tool" data-action="sort-za">
+              Sort Z &rarr; A (Reverse Alphabetical)
+            </button>
+            <button type="button" class="btn btn-tool" data-action="natural-sort">
+              Natural Numeric Sort (Item 1, 2, 10)
+            </button>
+            <button type="button" class="btn btn-tool" data-action="reverse-lines">
+              Reverse Line Order
+            </button>
+            <button type="button" class="btn btn-tool" data-action="shuffle-lines">
+              Random Shuffle Lines
+            </button>
+            <button type="button" class="btn btn-tool" data-action="sort-length-asc">
+              Sort by Length (Shortest First)
+            </button>
+            <button type="button" class="btn btn-tool" data-action="sort-length-desc">
+              Sort by Length (Longest First)
+            </button>
+          </div>
+        </section>
+
+        <!-- List Formatting & Deduplication -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">List Formatting &amp; Deduplication</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="remove-duplicate-lines">
+              <strong>Remove Duplicate Lines</strong> (Keep unique)
+            </button>
+            <button type="button" class="btn btn-tool" data-action="number-lines">
+              Add Line Numbers (1. , 2. , 3. ...)
+            </button>
+            <button type="button" class="btn btn-tool" data-action="remove-line-numbers">
+              Remove Line Numbers &amp; Bullets
+            </button>
+            <button type="button" class="btn btn-tool" data-action="remove-blank-lines">
+              Remove Empty / Blank Lines
+            </button>
+            <button type="button" class="btn btn-tool" data-action="trim-lines">
+              Trim Leading &amp; Trailing Whitespace
+            </button>
+          </div>
+        </section>
+
+        <!-- Informational Guide -->
+        <section class="content-section">
+          <h2>Sorting Methods &amp; List Formatting Guide</h2>
+          <p>
+            Whether managing a spreadsheet export, cleaning a mailing list, or sorting code imports, choosing the proper sorting algorithm ensures your items appear in the correct sequence.
+          </p>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Operation</th>
+                <th>How It Works</th>
+                <th>Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sort A &rarr; Z</strong></td>
+                <td>Standard case-insensitive alphabetical collation based on language locale.</td>
+                <td>Names, glossary terms, book titles, and dictionary indexes.</td>
+              </tr>
+              <tr>
+                <td><strong>Natural Sort</strong></td>
+                <td>Intelligently parses embedded numbers so that <code>Item 2</code> is ordered before <code>Item 10</code> (unlike standard ASCII sort which places 10 before 2).</td>
+                <td>File names, chapter headings, version tags (v1.2, v1.10), and numbered inventory.</td>
+              </tr>
+              <tr>
+                <td><strong>Reverse Lines</strong></td>
+                <td>Flips the vertical order of lines upside down (the last entry becomes the first).</td>
+                <td>Inverting chronologically sorted logs or audit entries.</td>
+              </tr>
+              <tr>
+                <td><strong>Remove Duplicate Lines</strong></td>
+                <td>Scans each line sequentially and discards repeated occurrences while preserving the original relative order.</td>
+                <td>Cleaning subscriber lists, deduplicating search terms, and removing duplicate CSV entries.</td>
+              </tr>
+              <tr>
+                <td><strong>Shuffle Lines</strong></td>
+                <td>Applies the unbiased Fisher-Yates shuffle algorithm to generate a fair random distribution.</td>
+                <td>Raffles, random team assignments, flashcard practice, and randomized quizzes.</td>
+              </tr>
+              <tr>
+                <td><strong>Number Lines</strong></td>
+                <td>Prefixes each non-empty line with an incremental number (e.g. <code>1. </code>, <code>2. </code>).</td>
+                <td>Step-by-step instructions, ranked lists, and recipes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Text Formatting Tools</strong> &mdash; Free client-side text tools. No ads, no tracking, 100% private.
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">All Tools</a></li>
+          <li><a href="case-converter.html">Case Converter</a></li>
+          <li><a href="text-cleaner.html">Text Cleaner</a></li>
+          <li><a href="sort-lines.html">Sort Lines</a></li>
+          <li><a href="word-counter.html">Word Counter</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Vanilla Script -->
+    <script src="./app.js"></script>
+  </body>
+</html>

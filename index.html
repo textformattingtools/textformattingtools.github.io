@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Formatting Tools - Free Online Case Converter, Cleaner & Sorter</title>
+    <meta name="description" content="Free online text formatting suite. Convert text case (upper, lower, title, sentence), clean messy whitespace, sort lists alphabetically, and count words in real time." />
+    <meta property="og:title" content="Text Formatting Tools - Free Online Case Converter, Cleaner & Sorter" />
+    <meta property="og:description" content="Quickly convert case, clean messy whitespace, sort lines, and count characters directly in your browser. Fast, private, and simple." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-link" title="Text Formatting Tools">
+          <span class="brand-icon">Tt</span>
+          <span>Text Formatting Tools</span>
+        </a>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html" class="nav-link active">All Tools</a></li>
+          <li><a href="case-converter.html" class="nav-link">Case Converter</a></li>
+          <li><a href="text-cleaner.html" class="nav-link">Text Cleaner</a></li>
+          <li><a href="sort-lines.html" class="nav-link">Sort Lines</a></li>
+          <li><a href="word-counter.html" class="nav-link">Word Counter</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Intro -->
+        <div class="page-intro">
+          <h1 class="page-title">Text Formatting Tools</h1>
+          <p class="page-desc">
+            A comprehensive, fast, and private online text formatting suite. Transform case, clean up irregular whitespace, sort lists, and count words in real time. Everything runs client-side in your browser.
+          </p>
+        </div>
+
+        <!-- Editor Card -->
+        <div class="editor-card">
+          <!-- Editor Top Toolbar -->
+          <div class="editor-toolbar">
+            <div class="toolbar-group">
+              <button id="btn-sample" type="button" class="btn btn-sm" title="Load sample messy text to test all tools">
+                Sample Text
+              </button>
+              <button id="btn-font-toggle" type="button" class="btn btn-sm" title="Toggle font between Sans and Monospace">
+                Font: Sans
+              </button>
+              <button id="btn-find-replace-toggle" type="button" class="btn btn-sm" title="Open Find & Replace tool">
+                Find &amp; Replace
+              </button>
+            </div>
+
+            <div class="toolbar-group">
+              <input type="file" id="file-input" class="visually-hidden" accept=".txt,.text,.md,.csv,.html,.json" />
+              <button id="btn-upload" type="button" class="btn btn-sm" title="Load a text file from your computer">
+                Open File
+              </button>
+              <button id="btn-download" type="button" class="btn btn-sm" title="Download formatted text as .txt">
+                Download .txt
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Textarea -->
+          <textarea
+            id="editor"
+            class="editor-textarea"
+            placeholder="Type, paste, or load your text here to begin formatting..."
+            spellcheck="false"
+          ></textarea>
+
+          <!-- Live Stats Bar -->
+          <div class="stats-bar">
+            <div class="stat-item">
+              <span class="stat-label">Words:</span>
+              <span id="stat-words" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Characters:</span>
+              <span id="stat-chars" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">No spaces:</span>
+              <span id="stat-chars-no-spaces" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Lines:</span>
+              <span id="stat-lines" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Sentences:</span>
+              <span id="stat-sentences" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Reading time:</span>
+              <span id="stat-reading-time" class="stat-value">0s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Bar (Undo, Redo, Copy, Clear) -->
+        <div class="action-bar">
+          <div class="action-bar-left">
+            <button id="btn-copy" type="button" class="btn btn-primary" title="Copy formatted text to clipboard (Ctrl+C)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copy to Clipboard
+            </button>
+            <button id="btn-clear" type="button" class="btn btn-danger" title="Clear all text from editor">
+              Clear Text
+            </button>
+          </div>
+
+          <div class="action-bar-right">
+            <button id="btn-undo" type="button" class="btn" disabled title="Undo last action (Ctrl+Z)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7v6h6"></path>
+                <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+              </svg>
+              Undo
+            </button>
+            <button id="btn-redo" type="button" class="btn" disabled title="Redo action (Ctrl+Y)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 7v6h-6"></path>
+                <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+              </svg>
+              Redo
+            </button>
+          </div>
+        </div>
+
+        <!-- Find & Replace Drawer -->
+        <div id="find-replace-panel" class="find-replace-panel">
+          <input type="text" id="find-input" class="input-field" placeholder="Search text..." />
+          <input type="text" id="replace-input" class="input-field" placeholder="Replace with..." />
+          <label class="form-check">
+            <input type="checkbox" id="match-case-check" /> Match case
+          </label>
+          <label class="form-check">
+            <input type="checkbox" id="regex-check" /> Regular expression
+          </label>
+          <button id="btn-do-replace" type="button" class="btn btn-sm">Replace Next</button>
+          <button id="btn-do-replace-all" type="button" class="btn btn-sm btn-primary">Replace All</button>
+        </div>
+
+        <!-- Tool Buttons Groups -->
+        <!-- 1. Case Conversion -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Case Conversion</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="sentence-case">Sentence case</button>
+            <button type="button" class="btn btn-tool" data-action="lowercase">lower case</button>
+            <button type="button" class="btn btn-tool" data-action="uppercase">UPPER CASE</button>
+            <button type="button" class="btn btn-tool" data-action="capitalized-case">Capitalized Case</button>
+            <button type="button" class="btn btn-tool" data-action="title-case">Title Case</button>
+            <button type="button" class="btn btn-tool" data-action="alternating-case">aLtErNaTiNg cAsE</button>
+            <button type="button" class="btn btn-tool" data-action="inverse-case">InVeRsE CaSe</button>
+            <button type="button" class="btn btn-tool" data-action="camel-case">camelCase</button>
+            <button type="button" class="btn btn-tool" data-action="pascal-case">PascalCase</button>
+            <button type="button" class="btn btn-tool" data-action="snake-case">snake_case</button>
+            <button type="button" class="btn btn-tool" data-action="kebab-case">kebab-case</button>
+          </div>
+        </section>
+
+        <!-- 2. Text Cleaning -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Text Cleaning</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="clean-all"><strong>Clean All</strong> (Spaces, Trim &amp; Punctuation)</button>
+            <button type="button" class="btn btn-tool" data-action="normalize-spaces">Normalize Spaces</button>
+            <button type="button" class="btn btn-tool" data-action="trim-lines">Trim Line Ends</button>
+            <button type="button" class="btn btn-tool" data-action="remove-blank-lines">Remove Blank Lines</button>
+            <button type="button" class="btn btn-tool" data-action="add-punct-spaces">Add Missing Punctuation Spaces</button>
+            <button type="button" class="btn btn-tool" data-action="strip-html">Strip HTML Tags</button>
+            <button type="button" class="btn btn-tool" data-action="single-line">Single Line (Remove Breaks)</button>
+            <button type="button" class="btn btn-tool" data-action="remove-duplicate-lines">Remove Duplicate Lines</button>
+          </div>
+        </section>
+
+        <!-- 3. List & Line Tools -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">List &amp; Line Tools</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="sort-az">Sort A &rarr; Z</button>
+            <button type="button" class="btn btn-tool" data-action="sort-za">Sort Z &rarr; A</button>
+            <button type="button" class="btn btn-tool" data-action="natural-sort">Natural Numeric Sort</button>
+            <button type="button" class="btn btn-tool" data-action="reverse-lines">Reverse Lines</button>
+            <button type="button" class="btn btn-tool" data-action="number-lines">Number Lines (1, 2, 3...)</button>
+            <button type="button" class="btn btn-tool" data-action="remove-line-numbers">Remove Line Numbers / Bullets</button>
+            <button type="button" class="btn btn-tool" data-action="shuffle-lines">Shuffle Lines</button>
+            <button type="button" class="btn btn-tool" data-action="sort-length-asc">Sort by Length (Short &rarr; Long)</button>
+            <button type="button" class="btn btn-tool" data-action="sort-length-desc">Sort by Length (Long &rarr; Short)</button>
+          </div>
+        </section>
+
+        <!-- 4. Text Utilities -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Utilities &amp; Encoders</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="reverse-text">Reverse Text</button>
+            <button type="button" class="btn btn-tool" data-action="url-encode">URL Encode</button>
+            <button type="button" class="btn btn-tool" data-action="url-decode">URL Decode</button>
+            <button type="button" class="btn btn-tool" data-action="base64-encode">Base64 Encode</button>
+            <button type="button" class="btn btn-tool" data-action="base64-decode">Base64 Decode</button>
+          </div>
+        </section>
+
+        <!-- Comprehensive Explanatory Guide -->
+        <section class="content-section">
+          <h2>About Text Formatting Tools</h2>
+          <p>
+            Text Formatting Tools is a fast, free, and lightweight browser utility inspired by the clean, minimal aesthetic of ConvertCase.net. Designed for writers, editors, programmers, and students, it lets you reformat messy text, adjust capitalization styles, alphabetize lists, clean up unformatted copy-pasted content, and analyze character and word statistics.
+          </p>
+          <p>
+            Unlike many online converters loaded with intrusive ads, tracking scripts, and slow server requests, our engine processes 100% of your data client-side within your browser. Your confidential emails, draft manuscripts, passwords, and source code never leave your computer.
+          </p>
+
+          <h3>Keyboard Shortcuts</h3>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Shortcut</th>
+                <th>Action</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>Ctrl + Z</code> / <code>Cmd + Z</code></td>
+                <td>Undo</td>
+                <td>Revert to the previous text formatting step.</td>
+              </tr>
+              <tr>
+                <td><code>Ctrl + Y</code> / <code>Cmd + Shift + Z</code></td>
+                <td>Redo</td>
+                <td>Re-apply an undone modification.</td>
+              </tr>
+              <tr>
+                <td><code>Ctrl + A</code></td>
+                <td>Select All</td>
+                <td>Quickly select entire editor contents.</td>
+              </tr>
+              <tr>
+                <td><code>Ctrl + C</code></td>
+                <td>Copy</td>
+                <td>Copy highlighted text to system clipboard.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Available Specialized Tools</h3>
+          <p>Looking for a dedicated workflow? Jump directly to our specialized tool pages:</p>
+          <ul>
+            <li><a href="case-converter.html"><strong>Case Converter:</strong></a> Dedicated converter for UPPERCASE, lowercase, Title Case, Sentence case, camelCase, and more with full styling guides.</li>
+            <li><a href="text-cleaner.html"><strong>Text Cleaner:</strong></a> Deep cleanup tool to remove extra spaces, trim line ends, fix missing punctuation spaces, and strip HTML tags.</li>
+            <li><a href="sort-lines.html"><strong>Sort Lines:</strong></a> Alphabetical A-Z, reverse Z-A, natural numeric sorting, duplicate remover, and line numbering.</li>
+            <li><a href="word-counter.html"><strong>Word Counter:</strong></a> Detailed text metrics including character counts, lines, sentences, paragraphs, reading speed, and top keyword frequencies.</li>
+          </ul>
+
+        </section>
+      </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Text Formatting Tools</strong> &mdash; Free client-side text tools. No ads, no tracking, 100% private.
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">All Tools</a></li>
+          <li><a href="case-converter.html">Case Converter</a></li>
+          <li><a href="text-cleaner.html">Text Cleaner</a></li>
+          <li><a href="sort-lines.html">Sort Lines</a></li>
+          <li><a href="word-counter.html">Word Counter</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Vanilla Script -->
+    <script src="./app.js"></script>
+  </body>
+</html>
