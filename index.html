@@ -34,11 +34,20 @@
     <main class="app-viewport">
         <section class="welcome-intro-block">
             <h2>Case Converters & Capitalization</h2>
-            <p>Easily convert any block of text into UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, or CONSTANT_CASE. Perfect for renaming code variables, normalizing messy customer names, and formatting blog post titles.</p>
+            <p>Easily convert any block of text into UPPERCASE, lowercase, Title Case, or Sentence case. Run conversions using the quick-action menu right above the workspace for instant side-by-side results.</p>
         </section>
 
-        <!-- Premium Split-View Workspace Component -->
+        <!-- Premium Dashboard Workspace Component -->
         <section class="workspace-card">
+            
+            <!-- Quick-Action Menu Implemented on Top for Superior UI/UX -->
+            <div class="top-action-bar">
+                <button onclick="runCase('upper')" class="action-bar-btn">UPPERCASE</button>
+                <button onclick="runCase('lower')" class="action-bar-btn">lowercase</button>
+                <button onclick="runCase('title')" class="action-bar-btn">Title Case</button>
+                <button onclick="runCase('sentence')" class="action-bar-btn">Sentence Case</button>
+            </div>
+
             <div class="metrics-panel">
                 <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
                 <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
@@ -57,7 +66,7 @@
                         <span>Formatted Output</span>
                         <button onclick="copyToClipboard()" class="pane-action-btn primary">Copy Output</button>
                     </div>
-                    <textarea id="textOutput" readonly placeholder="Click any formatting tool card below to see transformed output..."></textarea>
+                    <textarea id="textOutput" readonly placeholder="Your transformed output will appear here instantly..."></textarea>
                 </div>
             </div>
 
@@ -66,7 +75,7 @@
             </div>
         </section>
 
-        <!-- Element Cards Grid -->
+        <!-- Informational Cards Grid -->
         <section class="tools-grid-section">
             <div class="matrix-grid">
                 <div class="matrix-card" onclick="runCase('upper')"><h3>UPPERCASE</h3><p>Convert all letters to CAPITAL letters.</p><span class="card-action">Click to run</span></div>
@@ -77,12 +86,6 @@
                 <div class="matrix-card" onclick="runCase('camel')"><h3>camelCase</h3><p>First word lowercase, subsequent words capitalized.</p><span class="card-action">Click to run</span></div>
                 <div class="matrix-card" onclick="runCase('pascal')"><h3>PascalCase</h3><p>All words capitalized with no separators.</p><span class="card-action">Click to run</span></div>
                 <div class="matrix-card" onclick="runCase('snake')"><h3>snake_case</h3><p>Words separated by underscores in lowercase.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('kebab')"><h3>kebab-case</h3><p>Words separated by hyphens (ideal for URLs and CSS).</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('constant')"><h3>CONSTANT_CASE</h3><p>All uppercase words separated by underscores.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('dot')"><h3>dot.case</h3><p>Words separated by periods / dots.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('path')"><h3>path/case</h3><p>Words separated by forward slashes.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('alternate')"><h3>aLtErNaTiNg cAsE</h3><p>Alternate lowercase and uppercase characters.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runCase('invert')"><h3>Invert Case</h3><p>Invert uppercase to lowercase and vice versa.</p><span class="card-action">Click to run</span></div>
             </div>
         </section>
     </main>
@@ -92,7 +95,7 @@
             <nav class="footer-links"><a href="#">About Us</a><a href="#">Contact Us</a><a href="#">Privacy Policy</a><a href="#">Terms & FAQ</a></nav>
             <div class="footer-copyright"><p>&copy; 2026 TextFormattingTools. All rights reserved.</p></div>
         </div>
-    </footer>
+    </header>
 
     <script src="script.js"></script>
 </body>
