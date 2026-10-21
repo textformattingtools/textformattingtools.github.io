@@ -12,7 +12,7 @@ if (textInput) {
     });
 }
 
-// 1. Case Transforms (index.html)
+// 1. Case Conversions Logic Engine
 function runCase(type) {
     let txt = textInput.value; if (!txt.trim()) return;
     if (type === 'upper') textOutput.value = txt.toUpperCase();
@@ -31,7 +31,7 @@ function runCase(type) {
     else if (type === 'invert') textOutput.value = txt.split('').map((c) => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
 }
 
-// 2. Whitespace Controls (whitespace.html)
+// 2. Whitespace Cleaner Logic Engine
 function runClean(type) {
     let txt = textInput.value; if (!txt.trim()) return;
     if (type === 'spaces') textOutput.value = txt.replace(/[ \t]+/g, ' ').trim();
@@ -45,7 +45,7 @@ function runClean(type) {
     else if (type === 'tabs') textOutput.value = txt.replace(/\t/g, '  ');
 }
 
-// 3. List Sorting Engine (lists.html)
+// 3. Lines & Lists Logic Engine
 function runList(type) {
     let txt = textInput.value; if (!txt.trim()) return;
     let lines = txt.split('\n');
@@ -62,7 +62,7 @@ async function pasteFromClipboard() {
         textInput.value = await navigator.clipboard.readText();
         textInput.dispatchEvent(new Event('input'));
     } catch (err) {
-        alert('Please allow clipboard permissions.');
+        alert('Please allow clipboard permissions to paste text elements.');
     }
 }
 
@@ -70,7 +70,7 @@ function copyToClipboard() {
     if (!textOutput.value) return;
     textOutput.select();
     document.execCommand('copy');
-    alert('Formatted content copied to clipboard safely!');
+    alert('Formatted content successfully copied to clipboard!');
 }
 
 function clearText() {
