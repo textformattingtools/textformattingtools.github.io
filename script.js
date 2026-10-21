@@ -3,7 +3,6 @@ const wordCount = document.getElementById('wordCount');
 const charCount = document.getElementById('charCount');
 const lineCount = document.getElementById('lineCount');
 
-// Array Buffer Queues for Precise History Tracking
 let stateHistoryStack = [""];
 let trackingHistoryIndex = 0;
 let bypassHistoryPushFlag = false;
@@ -27,7 +26,6 @@ function runLiveMetrics() {
     lineCount.textContent = text === '' ? 0 : text.split('\n').length;
 }
 
-// Fixed Undo Action Logic Loop
 function executeUndo() {
     if (trackingHistoryIndex > 0) {
         bypassHistoryPushFlag = true;
@@ -38,7 +36,6 @@ function executeUndo() {
     }
 }
 
-// Fixed Redo Action Logic Loop
 function executeRedo() {
     if (trackingHistoryIndex < stateHistoryStack.length - 1) {
         bypassHistoryPushFlag = true;
@@ -49,7 +46,6 @@ function executeRedo() {
     }
 }
 
-// Standardizes history logging events and captures manual string replacements
 function recordExecutionState(newValueString) {
     if (!textInput) return;
     textInput.value = newValueString;
@@ -62,7 +58,6 @@ function recordExecutionState(newValueString) {
     }
 }
 
-// 1. Case Conversions Logic Engine
 function runCase(type) {
     let txt = textInput.value; if (!txt || txt.trim() === '') return;
     let res = "";
@@ -76,7 +71,6 @@ function runCase(type) {
     recordExecutionState(res);
 }
 
-// 2. Whitespace Cleaner Logic Engine
 function runClean(type) {
     let txt = textInput.value; if (!txt || txt.trim() === '') return;
     let res = "";
@@ -88,16 +82,22 @@ function runClean(type) {
     recordExecutionState(res);
 }
 
-// 3. Lines & Lists Logic Engine
+// FIXED: Cleaned array value separation methods to lock down Z-A descending loops
 function runList(type) {
     let txt = textInput.value; if (!txt || txt.trim() === '') return;
     let lines = txt.split('\n');
     let res = "";
-    if (type === 'sort_az') res = lines.sort((a, b) => a.localeCompare(b)).join('\n');
-    else if (type === 'sort_za') res = lines.sort((a, b) => b.localeCompare(a)).join('\n');
-    else if (type === 'reverse') res = lines.reverse().join('\n');
-    else if (type === 'numbers') res = lines.map((line, idx) => `${idx + 1}. ${line}`).join('\n');
-    else if (type === 'dedupe') res = [...new Set(lines)].join('\n');
+    if (type === 'sort_az') {
+        res = lines.sort((a, b) => a.localeCompare(b)).join('\n');
+    } else if (type === 'sort_za') {
+        res = lines.sort((a, b) => b.localeCompare(a)).join('\n');
+    } else if (type === 'reverse') {
+        res = lines.reverse().join('\n');
+    } else if (type === 'numbers') {
+        res = lines.map((line, idx) => `${idx + 1}. ${line}`).join('\n');
+    } else if (type === 'dedupe') {
+        res = [...new Set(lines)].join('\n');
+    }
     recordExecutionState(res);
 }
 
@@ -105,7 +105,6 @@ function copyToClipboard() {
     if (!textInput.value) return;
     textInput.select();
     document.execCommand('copy');
-    // Clear selection focus so the display remains elegant
     window.getSelection().removeAllRanges();
     alert('Content copied to clipboard successfully!');
 }
