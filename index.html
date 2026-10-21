@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TextFormattingTools | Free Online Case Converter & Text Utilities</title>
-    <meta name="description" content="Free online text tools. Convert case, clean whitespace, manage lists, and format string blocks instantly in your browser.">
+    <title>TextFormattingTools | Free Online Case Converter & Text Utilities Portal</title>
+    <meta name="description" content="Free online text tools. Convert case strings, clean whitespace, arrange lists, strip tags, and optimize text structures instantly in your web browser.">
     <link rel="canonical" href="https://github.io">
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <!-- Header Navigation with Populated Dropdowns -->
+    <!-- Professional Dark Navigation Header -->
     <header class="app-header">
         <div class="nav-container">
             
@@ -25,45 +25,12 @@
             
             <nav class="nav-menu">
                 <div class="menu-item-dropdown">
-                    <span class="dropdown-trigger">Text Tools ▾</span>
+                    <span class="dropdown-trigger">All Utilities Menu ▾</span>
                     <div class="megamenu-panel">
                         <div class="megamenu-column">
-                            <a href="#" onclick="switchContext('case')">Sentence case</a>
-                            <a href="#" onclick="switchContext('case')">lower case</a>
-                            <a href="#" onclick="switchContext('case')">UPPER CASE</a>
-                        </div>
-                        <div class="megamenu-column">
-                            <a href="#" onclick="switchContext('whitespace')">Whitespace Cleaner</a>
-                            <a href="#" onclick="switchContext('lists')">Duplicate Line Remover</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="menu-item-dropdown">
-                    <span class="dropdown-trigger">Code & Data ▾</span>
-                    <div class="megamenu-panel">
-                        <div class="megamenu-column">
-                            <a href="#" onclick="switchContext('whitespace')">Strip HTML Tags</a>
-                            <a href="#" onclick="switchContext('lists')">Sort Alphabetically</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="menu-item-dropdown">
-                    <span class="dropdown-trigger">Font Styles ▾</span>
-                    <div class="megamenu-panel">
-                        <div class="megamenu-column">
-                            <a href="#" onclick="runCase('alternate')">aLtErNaTiNg cAsE</a>
-                            <a href="#" onclick="runCase('invert')">InVeRsE CaSe</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="menu-item-dropdown">
-                    <span class="dropdown-trigger">Random Generators ▾</span>
-                    <div class="megamenu-panel">
-                        <div class="megamenu-column">
-                            <a href="#" onclick="generateLorem()">Lorem Ipsum Generator</a>
+                            <a href="#case-section">Case Converters</a>
+                            <a href="#whitespace-section">Whitespace Cleaners</a>
+                            <a href="#lists-section">Lines & Lists Sorters</a>
                         </div>
                     </div>
                 </div>
@@ -73,15 +40,15 @@
 
     <main class="app-viewport">
         
-        <!-- Interactive Single-TextArea Workspace (Forced White Theme) -->
+        <!-- White Workspace Dashboard Text Box Section -->
         <section class="workspace-wrapper">
             <div class="textarea-container">
-                <textarea id="textInput" placeholder="Type or paste your content here..."></textarea>
+                <textarea id="textInput" placeholder="Type or paste your text content here to start formatting..."></textarea>
                 
                 <div class="textarea-action-bar">
                     <div class="left-micro-actions">
-                        <button onclick="copyToClipboard()" title="Copy Text" class="micro-btn">📋 Copy</button>
-                        <button onclick="clearText()" title="Clear Text" class="micro-btn">🗑️ Clear</button>
+                        <button onclick="copyToClipboard()" class="micro-btn">📋 Copy Result</button>
+                        <button onclick="clearText()" class="micro-btn">🗑️ Clear Box</button>
                     </div>
                     <div class="right-live-stats">
                         Character Count: <span id="charCount">0</span> | Word Count: <span id="wordCount">0</span> | Line Count: <span id="lineCount">0</span>
@@ -89,87 +56,72 @@
                 </div>
             </div>
 
-            <!-- Case Action Strips -->
-            <div class="execution-strip-row" id="caseActions">
-                <button onclick="runCase('sentence')" class="strip-btn sc-btn">Sentence case</button>
-                <button onclick="runCase('lower')" class="strip-btn lc-btn">lower case</button>
-                <button onclick="runCase('upper')" class="strip-btn uc-btn">UPPER CASE</button>
-                <button onclick="runCase('capitalize')" class="strip-btn cc-btn">Capitalized Case</button>
-                <button onclick="runCase('alternate')" class="strip-btn ac-btn">aLtErNaTiNg cAsE</button>
-                <button onclick="runCase('title')" class="strip-btn tc-btn">Title Case</button>
-                <button onclick="runCase('invert')" class="strip-btn ic-btn">InVeRsE CaSe</button>
+            <!-- Category Group 1: Case Capitalization Options -->
+            <div class="category-action-row" id="case-section">
+                <span class="row-label">Capitalization Engine:</span>
+                <div class="buttons-flex">
+                    <button onclick="runCase('sentence')" class="strip-btn sc-btn">Sentence case</button>
+                    <button onclick="runCase('lower')" class="strip-btn lc-btn">lower case</button>
+                    <button onclick="runCase('upper')" class="strip-btn uc-btn">UPPER CASE</button>
+                    <button onclick="runCase('capitalize')" class="strip-btn cc-btn">Capitalized Case</button>
+                    <button onclick="runCase('alternate')" class="strip-btn ac-btn">aLtErNaTiNg cAsE</button>
+                    <button onclick="runCase('title')" class="strip-btn tc-btn">Title Case</button>
+                    <button onclick="runCase('invert')" class="strip-btn ic-btn">InVeRsE CaSe</button>
+                </div>
             </div>
 
-            <!-- Whitespace Action Strips -->
-            <div class="execution-strip-row hidden-strip" id="whitespaceActions">
-                <button onclick="runClean('spaces')" class="strip-btn pc-btn">Normalize Spaces</button>
-                <button onclick="runClean('add_necessary')" class="strip-btn highlight-blue-btn">Add Smart Spaces</button>
-                <button onclick="runClean('blank')" class="strip-btn pc-btn">Remove Blank Lines</button>
-                <button onclick="runClean('trim')" class="strip-btn pc-btn">Trim Edges</button>
-                <button onclick="runClean('html')" class="strip-btn pc-btn">Strip HTML Tags</button>
+            <!-- Category Group 2: Whitespace Cleaning Options -->
+            <div class="category-action-row" id="whitespace-section">
+                <span class="row-label">Spacing & Cleaning:</span>
+                <div class="buttons-flex">
+                    <button onclick="runClean('spaces')" class="strip-btn pc-btn">Normalize Spaces</button>
+                    <button onclick="runClean('add_necessary')" class="strip-btn highlight-blue-btn">Add Smart Spaces</button>
+                    <button onclick="runClean('blank')" class="strip-btn pc-btn">Remove Blank Lines</button>
+                    <button onclick="runClean('trim')" class="strip-btn pc-btn">Trim Edges</button>
+                    <button onclick="runClean('html')" class="strip-btn pc-btn">Strip HTML Tags</button>
+                </div>
             </div>
 
-            <!-- List Action Strips -->
-            <div class="execution-strip-row hidden-strip" id="listActions">
-                <button onclick="runList('sort_az')" class="strip-btn pc-btn">Sort A-Z</button>
-                <button onclick="runList('sort_za')" class="strip-btn pc-btn">Sort Z-A</button>
-                <button onclick="runList('dedupe')" class="strip-btn cc-btn">Remove Duplicates</button>
-                <button onclick="runList('numbers')" class="strip-btn pc-btn">Add Line Numbers</button>
-                <button onclick="runList('reverse')" class="strip-btn ic-btn">Reverse Rows</button>
+            <!-- Category Group 3: Lines & Lists Layout Options -->
+            <div class="category-action-row" id="lists-section">
+                <span class="row-label">List Management:</span>
+                <div class="buttons-flex">
+                    <button onclick="runList('sort_az')" class="strip-btn pc-btn">Sort A-Z List</button>
+                    <button onclick="runList('sort_za')" class="strip-btn pc-btn">Sort Z-A List</button>
+                    <button onclick="runList('dedupe')" class="strip-btn cc-btn">Remove Duplicates</button>
+                    <button onclick="runList('numbers')" class="strip-btn pc-btn">Add Line Numbers</button>
+                    <button onclick="runList('reverse')" class="strip-btn ic-btn">Reverse Rows</button>
+                </div>
             </div>
         </section>
 
-        <!-- Services Overview Grid (Descriptions of All Key Tools) -->
+        <!-- Descriptive Overviews Box Section (Essential for SEO Ranking) -->
         <section class="services-overview-block">
             <div class="service-card">
-                <div class="card-meta">sc</div>
-                <h3>Sentence Case</h3>
-                <p>Capitalizes the first letter of each sentence, converting the rest of the string block into lowercase letters.</p>
-                <div class="preview-box">This is an example of sentence case.</div>
-            </div>
-            <div class="service-card">
-                <div class="card-meta">lc</div>
-                <h3>lower case</h3>
-                <p>Forces all characters across your text paragraphs into clean, uncapitalized small letters.</p>
-                <div class="preview-box">this is an example of lower case text.</div>
-            </div>
-            <div class="service-card">
-                <div class="card-meta">uc</div>
-                <h3>UPPER CASE</h3>
-                <p>Converts every alphabetical character into capitalized, large block elements instantly.</p>
-                <div class="preview-box">THIS IS AN EXAMPLE OF UPPER CASE TEXT.</div>
-            </div>
-            <div class="service-card">
-                <div class="card-meta">cc</div>
-                <h3>Capitalized Case</h3>
-                <p>Capitalizes the first letter of every single word across the paragraph block.</p>
-                <div class="preview-box">This Is An Example Of Capitalized Case.</div>
-            </div>
-            <div class="service-card">
-                <div class="card-meta">ac</div>
-                <h3>Alternating Case</h3>
-                <p>Swaps characters back and forth between small and capital positions for specialized font styling.</p>
-                <div class="preview-box">tHiS Is aN ExAmPlE Of aLtErNaTiNg cAsE.</div>
-            </div>
-            <div class="service-card">
-                <div class="card-meta">tc</div>
-                <h3>Title Case</h3>
-                <p>Transforms text into clean headlines by capitalizing principal words and names perfectly.</p>
-                <div class="preview-box">This is an Example of Title Case text.</div>
+                <div class="card-meta">Aa</div>
+                <h3>Case Converter Extensions</h3>
+                <p>Instantly map long string columns into specific formats. Shift structural code keys into lower case parameters or title configurations perfectly for indexing algorithms.</p>
             </div>
             <div class="service-card">
                 <div class="card-meta">🧼</div>
-                <h3>Whitespace Cleaner</h3>
-                <p>Collapses redundant tab spacings, strips out empty lines, and organically injects spaces after punctuation.</p>
-                <div class="preview-box">Clean up raw strings and list entries effortlessly.</div>
+                <h3>Whitespace and Accent Cleaners</h3>
+                <p>Collapse unnecessary indentation gaps, fix broken spacing errors next to commas, or completely strip away HTML tags from log text.</p>
             </div>
             <div class="service-card">
                 <div class="card-meta">🔢</div>
-                <h3>List Manager</h3>
-                <p>Sort text entries alphabetically (A-Z or Z-A), remove duplicate entries, or prepend index line numbering.</p>
-                <div class="preview-box">1. First row entry item data list.</div>
+                <h3>Automated List Manager</h3>
+                <p>Organize chaotic line entries. Remove repetitive data records, sort columns alphabetically, or attach running numbers to lists dynamically.</p>
             </div>
         </section>
     </main>
 
-    <!-- Professional Corporate Copyright Footer (Fixed Year) -->
+    <!-- Professional Dark Corporate Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <p class="copyright-text">Copyright &copy; 2026 TextFormattingTools Ltd | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
