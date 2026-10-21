@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Whitespace Cleaner | Normalize Spaces & Tabs</title>
+    <meta name="description" content="Free online whitespace cleanup formatting utility. Instantly remove double spaces, scrub tabs, or clean blank lines from text structures directly inside your browser.">
+    <link rel="canonical" href="https://github.io">
+    
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Shared Dark Header -->
+    <header class="app-header">
+        <div class="nav-container">
+            
+                <a href="https://github.io" class="logo-text">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    Text<span class="highlight">Formatting</span>Tools
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Case Converter</a></li>
+                    <li><a href="whitespace.html" class="nav-link active">Whitespace Cleaner</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content Workspace Area -->
+    <main class="app-viewport">
+        <section class="welcome-intro-block">
+            <h2>Free Online Whitespace Cleanup Workspace</h2>
+            <p>Welcome to our dedicated whitespace normalization utility. Remove redundant tab spacing strings, trim leading line ends, or collapse excessive line breaks with a single operational button click.</p>
+        </section>
+
+        <section class="workspace-card">
+            <div class="editor-environment">
+                <textarea id="textInput" placeholder="Paste your messy text data strings here to execute spacing cleanup operations..."></textarea>
+                
+                <div class="metrics-panel">
+                    <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
+                    <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
+                </div>
+            </div>
+
+            <div class="action-toolbar">
+                <button onclick="cleanWhitespace('spaces')" class="tool-btn secondary">Remove Extra Spaces</button>
+                <button onclick="cleanWhitespace('lines')" class="tool-btn secondary">Remove Blank Lines</button>
+                <button onclick="copyToClipboard()" class="tool-btn primary">Copy Text</button>
+                <button onclick="clearText()" class="tool-btn damage">Clear</button>
+            </div>
+        </section>
+
+        <!-- On-Page SEO Foundations -->
+        <article class="seo-knowledge-base">
+            <h2>The Value of Clean String Paragraph Data Sets</h2>
+            <p class="intro-paragraph">Hidden formatting characters and double indentation errors often cause failures when migrating data across spreadsheets or code arrays. Normalizing spacing variables removes these hurdles instantly.</p>
+        </article>
+    </main>
+
+    <!-- Shared Dark Footer -->
+    <footer class="app-footer">
+        <div class="footer-container">
+            <nav class="footer-links" aria-label="Footer Navigation">
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & FAQ</a>
+            </nav>
+            <div class="footer-copyright">
+                <p>&copy; 2026 TextFormattingTools. All rights reserved. Clean client-side engineering structures.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
