@@ -34,11 +34,20 @@
     <main class="app-viewport">
         <section class="welcome-intro-block">
             <h2>Lines & Lists Management</h2>
-            <p>Organize, order, and adjust lists of text arrays. Sort data records alphabetically, reverse sorting arrays, add numeric sequence numbers to line items, or clean out system duplication metrics instantly.</p>
+            <p>Sort text entries alphabetically, remove repetitive items, or append line numbers quickly using the layout shortcuts on top.</p>
         </section>
 
-        <!-- Premium Split-View Workspace Component -->
+        <!-- Premium Dashboard Workspace Component -->
         <section class="workspace-card">
+            
+            <!-- Quick List Controls Right On Top -->
+            <div class="top-action-bar">
+                <button onclick="runList('sort_az')" class="action-bar-btn">Sort A-Z</button>
+                <button onclick="runList('dedupe')" class="action-bar-btn">Remove Duplicates</button>
+                <button onclick="runList('numbers')" class="action-bar-btn">Add Numbers</button>
+                <button onclick="runList('reverse')" class="action-bar-btn">Reverse Order</button>
+            </div>
+
             <div class="metrics-panel">
                 <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
                 <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
@@ -57,7 +66,7 @@
                         <span>Formatted Output</span>
                         <button onclick="copyToClipboard()" class="pane-action-btn primary">Copy Output</button>
                     </div>
-                    <textarea id="textOutput" readonly placeholder="Click any formatting tool card below to see transformed output..."></textarea>
+                    <textarea id="textOutput" readonly placeholder="Your transformed output will appear here instantly..."></textarea>
                 </div>
             </div>
 
