@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lines & Lists Management Suite | TextFormattingTools</title>
+    <meta name="description" content="Free online list tools. Sort entries alphabetically, reverse list order, add line numbering, shuffle text elements, or filter rows seamlessly.">
+    <link rel="canonical" href="https://github.io">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="nav-container">
+            
+                <a href="index.html" class="logo-text">Text<span class="highlight">Formatting</span>Tools</a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Case Converters</a></li>
+                    <li><a href="whitespace.html" class="nav-link">Whitespace Cleaner</a></li>
+                    <li><a href="lists.html" class="nav-link active">Lines & Lists</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="app-viewport">
+        <section class="welcome-intro-block">
+            <h2>Lines & Lists Management</h2>
+            <p>Organize, order, and adjust lists of text arrays. Sort data records alphabetically, reverse sorting arrays, add numeric sequence numbers to line items, or clean out system duplication metrics instantly.</p>
+        </section>
+
+        <!-- Premium Split-View Workspace Component -->
+        <section class="workspace-card">
+            <div class="metrics-panel">
+                <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
+                <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
+            </div>
+
+            <div class="split-view-container">
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Input Source</span>
+                        <button onclick="pasteFromClipboard()" class="pane-link-btn">Paste from Clipboard</button>
+                    </div>
+                    <textarea id="textInput" placeholder="Type or paste your source text here..."></textarea>
+                </div>
+                <div class="editor-pane">
+                    <div class="pane-header">
+                        <span>Formatted Output</span>
+                        <button onclick="copyToClipboard()" class="pane-action-btn primary">Copy Output</button>
+                    </div>
+                    <textarea id="textOutput" readonly placeholder="Click any formatting tool card below to see transformed output..."></textarea>
+                </div>
+            </div>
+
+            <div class="action-toolbar">
+                <button onclick="clearText()" class="tool-btn damage">Clear Workspace</button>
+            </div>
+        </section>
+
+        <!-- Element Cards Grid -->
+        <section class="tools-grid-section">
+            <div class="matrix-grid">
+                <div class="matrix-card" onclick="runList('sort_az')"><h3>Sort Alphabetically (A-Z)</h3><p>Arrange lists in ascending alphabetical order.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runList('sort_za')"><h3>Sort Alphabetically (Z-A)</h3><p>Arrange lists in descending alphabetical order.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runList('reverse')"><h3>Reverse List Order</h3><p>Flip the list order completely upside down.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runList('numbers')"><h3>Add Line Numbers</h3><p>Prepend numeric row indexing digits onto each element.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runList('dedupe')"><h3>Remove Duplicate Lines</h3><p>Purge all repeated line rows from your data sets.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runList('shuffle')"><h3>Shuffle Lines Randomly</h3><p>Randomly randomize the index layout positions of lists.</p><span class="card-action">Click to run</span></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-container">
+            <nav class="footer-links"><a href="#">About Us</a><a href="#">Contact Us</a><a href="#">Privacy Policy</a><a href="#">Terms & FAQ</a></nav>
+            <div class="footer-copyright"><p>&copy; 2026 TextFormattingTools. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
