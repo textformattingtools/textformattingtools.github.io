@@ -4,32 +4,88 @@ html
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Utilities Hub</title>
+    
+    <!-- ======================================================= -->
+    <!-- EDIT SEO META TAGS HERE -->
+    <!-- ======================================================= -->
+    <title>Free Text Formatting Tools & Text Utilities Online</title>
+    <meta name="description" content="Free online text formatting utilities. Quickly convert case (UPPERCASE, lowercase), clean extra whitespace, count words, and format content instantly in your browser.">
+    <link rel="canonical" href="https://github.io">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Text Utilities & Formatting Hub</h1>
-        <p>Fast, secure, browser-based text manipulation tools.</p>
+
+    <!-- ======================================================= -->
+    <!-- HEADER & NAVIGATION SECTION (EDIT LOGO & MENU LINKS HERE) -->
+    <!-- ======================================================= -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <!-- Change your site logo name below -->
+                <a href="https://github.io"><span>Text</span>FormattingTools</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <!-- Add or remove links to your pages here -->
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#about-seo">About Tools</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
+    <!-- MAIN BODY CONTENT -->
     <main class="container">
-        <div class="input-area">
-            <textarea id="textInput" placeholder="Paste or type your text here..."></textarea>
-            <div class="stats">
-                <span>Words: <strong id="wordCount">0</strong></span> | 
-                <span>Characters: <strong id="charCount">0</strong></span>
+        
+        <!-- ======================================================= -->
+        <!-- TEXT UTILITY BOX (EDIT CONTROLS AND INTERFACE HERE) -->
+        <!-- ======================================================= -->
+        <section class="tool-section">
+            <div class="input-area">
+                <!-- You can change the box placeholder text below -->
+                <textarea id="textInput" placeholder="Paste or type your text here to format..."></textarea>
+                <div class="stats">
+                    <span>Words: <strong id="wordCount">0</strong></span> | 
+                    <span>Characters: <strong id="charCount">0</strong></span>
+                </div>
             </div>
-        </div>
 
-        <div class="toolbar">
-            <button onclick="transformText('upper')">UPPERCASE</button>
-            <button onclick="transformText('lower')">lowercase</button>
-            <button onclick="transformText('clean')">Clean Whitespace</button>
-            <button onclick="copyToClipboard()" class="btn-copy">Copy Result</button>
-            <button onclick="clearText()" class="btn-clear">Clear</button>
-        </div>
+            <!-- BUTTON TOOLBAR: Add new utility buttons here -->
+            <div class="toolbar">
+                <button onclick="transformText('upper')">UPPERCASE</button>
+                <button onclick="transformText('lower')">lowercase</button>
+                <button onclick="transformText('clean')">Clean Whitespace</button>
+                <button onclick="copyToClipboard()" class="btn-copy">Copy Result</button>
+                <button onclick="clearText()" class="btn-clear">Clear</button>
+            </div>
+        </section>
+
+        <!-- ======================================================= -->
+        <!-- SEO CONTENT SECTION (EDIT THIS TEXT TO RANK ON GOOGLE) -->
+        <!-- ======================================================= -->
+        <section id="about-seo" class="seo-content">
+            <h2>Online Text Formatting & Manipulation Utilities</h2>
+            <p>Welcome to your premier destination for secure, instant browser-based text alterations. Whether you are clean editing code logs, modifying strings for spreadsheet data entry, or reformatting creative writing pieces, our free application gives you total control.</p>
+            
+            <h3>Key Functional Capabilities:</h3>
+            <ul>
+                <li><strong>Case Converters:</strong> Shift bulk paragraphs instantly into uppercase or lowercase configurations.</li>
+                <li><strong>Whitespace Removal:</strong> Strips away messy spacing errors, redundant tabs, and formatting glitches seamlessly.</li>
+                <li><strong>Real-time Tracking:</strong> Monitor exact character limits and overall word calculations metrics as you type.</li>
+            </ul>
+        </section>
     </main>
+
+    <!-- ======================================================= -->
+    <!-- FOOTER SECTION (EDIT COPYRIGHT & DISCLAIMERS HERE) -->
+    <!-- ======================================================= -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Update your business or website profile text below -->
+            <p>&copy; 2026 TextFormattingTools. All rights reserved. Fast, secure, client-side data conversion.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
