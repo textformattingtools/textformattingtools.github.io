@@ -34,11 +34,20 @@
     <main class="app-viewport">
         <section class="welcome-intro-block">
             <h2>Deduplication & Whitespace Cleaning</h2>
-            <p>Normalize multi-space indentations into clean single spaces, remove empty lines, trim leading and trailing gaps, and strip unwanted HTML or XML tags. Eliminate duplicates from massive email lists or spreadsheet exports while preserving the natural line order.</p>
+            <p>Normalize formatting gaps seamlessly. Use the clean top layout navigation actions to strip double indentations, delete empty rows, or fix missing spaces automatically.</p>
         </section>
 
-        <!-- Premium Split-View Workspace Component -->
+        <!-- Premium Dashboard Workspace Component -->
         <section class="workspace-card">
+            
+            <!-- Quick Whitespace Actions Right On Top -->
+            <div class="top-action-bar">
+                <button onclick="runClean('spaces')" class="action-bar-btn">Normalize Spaces</button>
+                <button onclick="runClean('add_necessary')" class="action-bar-btn highlight-btn">Add Smart Spaces</button>
+                <button onclick="runClean('blank')" class="action-bar-btn">Remove Blank Lines</button>
+                <button onclick="runClean('trim')" class="action-bar-btn">Trim Lines</button>
+            </div>
+
             <div class="metrics-panel">
                 <div class="metric-pill">Words: <strong id="wordCount">0</strong></div>
                 <div class="metric-pill">Characters: <strong id="charCount">0</strong></div>
@@ -57,7 +66,7 @@
                         <span>Formatted Output</span>
                         <button onclick="copyToClipboard()" class="pane-action-btn primary">Copy Output</button>
                     </div>
-                    <textarea id="textOutput" readonly placeholder="Click any formatting tool card below to see transformed output..."></textarea>
+                    <textarea id="textOutput" readonly placeholder="Your transformed output will appear here instantly..."></textarea>
                 </div>
             </div>
 
@@ -70,14 +79,11 @@
         <section class="tools-grid-section">
             <div class="matrix-grid">
                 <div class="matrix-card" onclick="runClean('spaces')"><h3>Normalize Extra Spaces</h3><p>Collapse multiple spaces into a single space.</p><span class="card-action">Click to run</span></div>
+                <div class="matrix-card" onclick="runClean('add_necessary')"><h3>Add Smart Spaces</h3><p>Insert missing spaces after punctuation marks organically.</p><span class="card-action">Click to run</span></div>
                 <div class="matrix-card" onclick="runClean('blank')"><h3>Remove Blank Lines</h3><p>Delete all empty or whitespace-only lines.</p><span class="card-action">Click to run</span></div>
                 <div class="matrix-card" onclick="runClean('trim')"><h3>Trim Lines</h3><p>Remove leading and trailing whitespace from each line.</p><span class="card-action">Click to run</span></div>
                 <div class="matrix-card" onclick="runClean('unwrap')"><h3>Unwrap Paragraphs</h3><p>Turn broken lines back into fluid paragraphs.</p><span class="card-action">Click to run</span></div>
                 <div class="matrix-card" onclick="runClean('html')"><h3>Strip HTML Tags</h3><p>Remove HTML / XML markup and keep pure text.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runClean('accents')"><h3>Remove Accents (Diacritics)</h3><p>Convert accented letters (é, ñ, ü) to standard ASCII equivalents.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runClean('emojis')"><h3>Remove Emojis</h3><p>Purge all emoji symbols from text fields.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runClean('allspaces')"><h3>Remove All Spaces</h3><p>Strip every space, tab, and whitespace character.</p><span class="card-action">Click to run</span></div>
-                <div class="matrix-card" onclick="runClean('tabs')"><h3>Tabs to Spaces (2)</h3><p>Replace tab indentations with 2 spaces.</p><span class="card-action">Click to run</span></div>
             </div>
         </section>
     </main>
