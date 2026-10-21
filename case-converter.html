@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Converter - UPPERCASE, lowercase, Title Case &amp; Sentence Case</title>
+    <meta name="description" content="Free online case converter. Switch text between UPPERCASE, lowercase, sentence case, title case, capitalized case, alternating case, camelCase, snake_case and kebab-case instantly." />
+    <meta property="og:title" content="Case Converter - UPPERCASE, lowercase, Title Case &amp; Sentence Case" />
+    <meta property="og:description" content="Convert your text to any casing style with a single click. Sentence case, Title Case, UPPERCASE, lowercase, and developer casing formats." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-link" title="Text Formatting Tools">
+          <span class="brand-icon">Tt</span>
+          <span>Text Formatting Tools</span>
+        </a>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html" class="nav-link">All Tools</a></li>
+          <li><a href="case-converter.html" class="nav-link active">Case Converter</a></li>
+          <li><a href="text-cleaner.html" class="nav-link">Text Cleaner</a></li>
+          <li><a href="sort-lines.html" class="nav-link">Sort Lines</a></li>
+          <li><a href="word-counter.html" class="nav-link">Word Counter</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Intro -->
+        <div class="page-intro">
+          <h1 class="page-title">Case Converter</h1>
+          <p class="page-desc">
+            Easily convert any block of text into uppercase, lowercase, sentence case, title case, capitalized case, alternating case, or programming casings (camelCase, snake_case, kebab-case) in real time.
+          </p>
+        </div>
+
+        <!-- Editor Card -->
+        <div class="editor-card">
+          <!-- Editor Top Toolbar -->
+          <div class="editor-toolbar">
+            <div class="toolbar-group">
+              <button id="btn-sample" type="button" class="btn btn-sm" title="Load sample text">
+                Sample Text
+              </button>
+              <button id="btn-font-toggle" type="button" class="btn btn-sm" title="Toggle font between Sans and Monospace">
+                Font: Sans
+              </button>
+              <button id="btn-find-replace-toggle" type="button" class="btn btn-sm" title="Open Find & Replace tool">
+                Find &amp; Replace
+              </button>
+            </div>
+
+            <div class="toolbar-group">
+              <input type="file" id="file-input" class="visually-hidden" accept=".txt,.text,.md,.csv,.html,.json" />
+              <button id="btn-upload" type="button" class="btn btn-sm" title="Load text file">
+                Open File
+              </button>
+              <button id="btn-download" type="button" class="btn btn-sm" title="Download as .txt">
+                Download .txt
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Textarea -->
+          <textarea
+            id="editor"
+            class="editor-textarea"
+            placeholder="Type or paste your text here, then choose a case conversion button below..."
+            spellcheck="false"
+          ></textarea>
+
+          <!-- Live Stats Bar -->
+          <div class="stats-bar">
+            <div class="stat-item">
+              <span class="stat-label">Words:</span>
+              <span id="stat-words" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Characters:</span>
+              <span id="stat-chars" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">No spaces:</span>
+              <span id="stat-chars-no-spaces" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Lines:</span>
+              <span id="stat-lines" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Sentences:</span>
+              <span id="stat-sentences" class="stat-value">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Reading time:</span>
+              <span id="stat-reading-time" class="stat-value">0s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+          <div class="action-bar-left">
+            <button id="btn-copy" type="button" class="btn btn-primary" title="Copy converted text (Ctrl+C)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copy to Clipboard
+            </button>
+            <button id="btn-clear" type="button" class="btn btn-danger" title="Clear text">
+              Clear Text
+            </button>
+          </div>
+
+          <div class="action-bar-right">
+            <button id="btn-undo" type="button" class="btn" disabled title="Undo last change (Ctrl+Z)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7v6h6"></path>
+                <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+              </svg>
+              Undo
+            </button>
+            <button id="btn-redo" type="button" class="btn" disabled title="Redo change (Ctrl+Y)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 7v6h-6"></path>
+                <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+              </svg>
+              Redo
+            </button>
+          </div>
+        </div>
+
+        <!-- Find & Replace Drawer -->
+        <div id="find-replace-panel" class="find-replace-panel">
+          <input type="text" id="find-input" class="input-field" placeholder="Search text..." />
+          <input type="text" id="replace-input" class="input-field" placeholder="Replace with..." />
+          <label class="form-check">
+            <input type="checkbox" id="match-case-check" /> Match case
+          </label>
+          <label class="form-check">
+            <input type="checkbox" id="regex-check" /> Regular expression
+          </label>
+          <button id="btn-do-replace" type="button" class="btn btn-sm">Replace Next</button>
+          <button id="btn-do-replace-all" type="button" class="btn btn-sm btn-primary">Replace All</button>
+        </div>
+
+        <!-- Standard Case Options -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Standard Case Formats</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="sentence-case">Sentence case</button>
+            <button type="button" class="btn btn-tool" data-action="lowercase">lower case</button>
+            <button type="button" class="btn btn-tool" data-action="uppercase">UPPER CASE</button>
+            <button type="button" class="btn btn-tool" data-action="capitalized-case">Capitalized Case</button>
+            <button type="button" class="btn btn-tool" data-action="title-case">Title Case (AP/Chicago)</button>
+            <button type="button" class="btn btn-tool" data-action="alternating-case">aLtErNaTiNg cAsE</button>
+            <button type="button" class="btn btn-tool" data-action="inverse-case">InVeRsE CaSe</button>
+          </div>
+        </section>
+
+        <!-- Developer Case Options -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Developer &amp; Code Casing</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="camel-case">camelCase</button>
+            <button type="button" class="btn btn-tool" data-action="pascal-case">PascalCase</button>
+            <button type="button" class="btn btn-tool" data-action="snake-case">snake_case</button>
+            <button type="button" class="btn btn-tool" data-action="kebab-case">kebab-case</button>
+          </div>
+        </section>
+
+        <!-- Detailed Documentation & Guide -->
+        <section class="content-section">
+          <h2>Guide to Letter Case Formats</h2>
+          <p>
+            Letter casing rules differ significantly between formal journalism, academic publishing, social media, and software engineering. Here is a breakdown of how each casing format functions and when to use it:
+          </p>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Case Style</th>
+                <th>Sample Output</th>
+                <th>Common Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sentence case</strong></td>
+                <td><code>This is an example sentence.</code></td>
+                <td>Standard prose, emails, articles, and documentation paragraphs. Capitalizes the first letter of each sentence and preserves proper nouns like "I".</td>
+              </tr>
+              <tr>
+                <td><strong>lower case</strong></td>
+                <td><code>this is an example sentence.</code></td>
+                <td>Removes all capital letters. Used in data cleaning, email normalization, and search indexing.</td>
+              </tr>
+              <tr>
+                <td><strong>UPPER CASE</strong></td>
+                <td><code>THIS IS AN EXAMPLE SENTENCE.</code></td>
+                <td>Used for high-priority headings, acronyms, warnings, and emphasis.</td>
+              </tr>
+              <tr>
+                <td><strong>Capitalized Case</strong></td>
+                <td><code>This Is An Example Sentence.</code></td>
+                <td>Capitalizes the first letter of every single word indiscriminately. Useful for names, book chapters, and tabular headers.</td>
+              </tr>
+              <tr>
+                <td><strong>Title Case</strong></td>
+                <td><code>This Is an Example Sentence</code></td>
+                <td>Standard AP/Chicago title casing. Capitalizes the first and last word, plus all nouns, verbs, and adjectives, while keeping minor articles and conjunctions (a, an, the, and, but, in, on, of) lowercase.</td>
+              </tr>
+              <tr>
+                <td><strong>aLtErNaTiNg cAsE</strong></td>
+                <td><code>tHiS Is aN ExAmPlE SeNtEnCe.</code></td>
+                <td>Popularized in internet memes, playful text, and sarcastic commentary. Alternates uppercase and lowercase across letters.</td>
+              </tr>
+              <tr>
+                <td><strong>InVeRsE CaSe</strong></td>
+                <td>Flips uppercase to lowercase and vice versa</td>
+                <td>Helpful if you accidentally typed text with Caps Lock turned on.</td>
+              </tr>
+              <tr>
+                <td><strong>camelCase</strong></td>
+                <td><code>thisIsAnExampleSentence</code></td>
+                <td>Standard programming naming convention in JavaScript, TypeScript, Java, and C# for variable and function names.</td>
+              </tr>
+              <tr>
+                <td><strong>PascalCase</strong></td>
+                <td><code>ThisIsAnExampleSentence</code></td>
+                <td>Used for class names, React components, and types in TypeScript and C#.</td>
+              </tr>
+              <tr>
+                <td><strong>snake_case</strong></td>
+                <td><code>this_is_an_example_sentence</code></td>
+                <td>Used for Python variable names, database column names in PostgreSQL/MySQL, and file names.</td>
+              </tr>
+              <tr>
+                <td><strong>kebab-case</strong></td>
+                <td><code>this-is-an-example-sentence</code></td>
+                <td>Standard for web URLs, CSS class names, and Git branch identifiers.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>How Title Case Rules Work</h3>
+          <p>
+            Unlike naive converters that capitalize every single word, our <strong>Title Case</strong> algorithm adheres to published editorial standards (AP Stylebook &amp; Chicago Manual of Style). The first and final word of each line is always capitalized. Minor conjunctions, prepositions, and articles with fewer than four letters (such as <em>a, an, and, as, at, but, by, for, in, nor, of, on, or, per, the, to, vs, via</em>) remain in lowercase unless they begin or end the title.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Text Formatting Tools</strong> &mdash; Free client-side text tools. No ads, no tracking, 100% private.
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">All Tools</a></li>
+          <li><a href="case-converter.html">Case Converter</a></li>
+          <li><a href="text-cleaner.html">Text Cleaner</a></li>
+          <li><a href="sort-lines.html">Sort Lines</a></li>
+          <li><a href="word-counter.html">Word Counter</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Vanilla Script -->
+    <script src="./app.js"></script>
+  </body>
+</html>

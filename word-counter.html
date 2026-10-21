@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Counter - Real-Time Word, Character &amp; Line Count</title>
+    <meta name="description" content="Free online word counter and text analyzer. Count words, characters with/without spaces, lines, sentences, paragraphs, reading time, and keyword frequency." />
+    <meta property="og:title" content="Word Counter - Real-Time Word, Character &amp; Line Count" />
+    <meta property="og:description" content="Instant real-time character, word, sentence, and reading time counter with top keyword frequency breakdown." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-link" title="Text Formatting Tools">
+          <span class="brand-icon">Tt</span>
+          <span>Text Formatting Tools</span>
+        </a>
+        <button id="mobile-nav-toggle" class="mobile-nav-toggle" aria-label="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html" class="nav-link">All Tools</a></li>
+          <li><a href="case-converter.html" class="nav-link">Case Converter</a></li>
+          <li><a href="text-cleaner.html" class="nav-link">Text Cleaner</a></li>
+          <li><a href="sort-lines.html" class="nav-link">Sort Lines</a></li>
+          <li><a href="word-counter.html" class="nav-link active">Word Counter</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Intro -->
+        <div class="page-intro">
+          <h1 class="page-title">Real-Time Word Counter &amp; Text Analyzer</h1>
+          <p class="page-desc">
+            Instantly calculate word count, character count (with and without spaces), line count, sentence count, paragraph count, estimated reading time, speaking duration, and keyword density.
+          </p>
+        </div>
+
+        <!-- Prominent Visual Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div id="stat-words" class="stat-card-num">0</div>
+            <div class="stat-card-label">Words</div>
+          </div>
+          <div class="stat-card">
+            <div id="stat-chars" class="stat-card-num">0</div>
+            <div class="stat-card-label">Characters</div>
+          </div>
+          <div class="stat-card">
+            <div id="stat-chars-no-spaces" class="stat-card-num">0</div>
+            <div class="stat-card-label">Without Spaces</div>
+          </div>
+          <div class="stat-card">
+            <div id="stat-lines" class="stat-card-num">0</div>
+            <div class="stat-card-label">Lines</div>
+          </div>
+          <div class="stat-card">
+            <div id="stat-sentences" class="stat-card-num">0</div>
+            <div class="stat-card-label">Sentences</div>
+          </div>
+          <div class="stat-card">
+            <div id="stat-paragraphs" class="stat-card-num">0</div>
+            <div class="stat-card-label">Paragraphs</div>
+          </div>
+          <div class="stat-card">
+            <div id="stat-reading-time" class="stat-card-num">0s</div>
+            <div class="stat-card-label">Reading Time</div>
+          </div>
+          <div class="stat-card">
+            <div id="stat-speaking-time" class="stat-card-num">0s</div>
+            <div class="stat-card-label">Speaking Time</div>
+          </div>
+        </div>
+
+        <!-- Editor Card -->
+        <div class="editor-card">
+          <!-- Editor Top Toolbar -->
+          <div class="editor-toolbar">
+            <div class="toolbar-group">
+              <button id="btn-sample" type="button" class="btn btn-sm" title="Load sample paragraph">
+                Sample Text
+              </button>
+              <button id="btn-font-toggle" type="button" class="btn btn-sm" title="Toggle font between Sans and Monospace">
+                Font: Sans
+              </button>
+              <button id="btn-find-replace-toggle" type="button" class="btn btn-sm" title="Open Find & Replace tool">
+                Find &amp; Replace
+              </button>
+            </div>
+
+            <div class="toolbar-group">
+              <input type="file" id="file-input" class="visually-hidden" accept=".txt,.text,.md,.csv,.html,.json" />
+              <button id="btn-upload" type="button" class="btn btn-sm" title="Load text file">
+                Open File
+              </button>
+              <button id="btn-download" type="button" class="btn btn-sm" title="Download text as .txt">
+                Download .txt
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Textarea -->
+          <textarea
+            id="editor"
+            class="editor-textarea"
+            placeholder="Type, write, or paste your text here. Character and word statistics will update instantly in real time..."
+            spellcheck="false"
+          ></textarea>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+          <div class="action-bar-left">
+            <button id="btn-copy" type="button" class="btn btn-primary" title="Copy text to clipboard">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              Copy to Clipboard
+            </button>
+            <button id="btn-clear" type="button" class="btn btn-danger" title="Clear text">
+              Clear Text
+            </button>
+          </div>
+
+          <div class="action-bar-right">
+            <button id="btn-undo" type="button" class="btn" disabled title="Undo last change">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7v6h6"></path>
+                <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path>
+              </svg>
+              Undo
+            </button>
+            <button id="btn-redo" type="button" class="btn" disabled title="Redo change">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 7v6h-6"></path>
+                <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"></path>
+              </svg>
+              Redo
+            </button>
+          </div>
+        </div>
+
+        <!-- Find & Replace Drawer -->
+        <div id="find-replace-panel" class="find-replace-panel">
+          <input type="text" id="find-input" class="input-field" placeholder="Search text..." />
+          <input type="text" id="replace-input" class="input-field" placeholder="Replace with..." />
+          <label class="form-check">
+            <input type="checkbox" id="match-case-check" /> Match case
+          </label>
+          <label class="form-check">
+            <input type="checkbox" id="regex-check" /> Regular expression
+          </label>
+          <button id="btn-do-replace" type="button" class="btn btn-sm">Replace Next</button>
+          <button id="btn-do-replace-all" type="button" class="btn btn-sm btn-primary">Replace All</button>
+        </div>
+
+        <!-- Quick Formatting Actions -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Quick Formatting Shortcuts</h2>
+          <div class="tools-grid">
+            <button type="button" class="btn btn-tool" data-action="sentence-case">Sentence case</button>
+            <button type="button" class="btn btn-tool" data-action="title-case">Title Case</button>
+            <button type="button" class="btn btn-tool" data-action="lowercase">lower case</button>
+            <button type="button" class="btn btn-tool" data-action="uppercase">UPPER CASE</button>
+            <button type="button" class="btn btn-tool" data-action="normalize-spaces">Normalize Spaces</button>
+            <button type="button" class="btn btn-tool" data-action="trim-lines">Trim Lines</button>
+            <button type="button" class="btn btn-tool" data-action="remove-blank-lines">Remove Blank Lines</button>
+          </div>
+        </section>
+
+        <!-- Top Keywords Frequency Table -->
+        <section class="tools-section">
+          <h2 class="tools-section-title">Top Keyword Frequency &amp; Density</h2>
+          <div class="freq-table-container">
+            <table class="content-table" style="margin: 0;">
+              <thead>
+                <tr>
+                  <th>Keyword</th>
+                  <th>Occurrences</th>
+                  <th>Density (%)</th>
+                </tr>
+              </thead>
+              <tbody id="freq-table-body">
+                <tr>
+                  <td colspan="3" style="text-align: center; color: #9ca3af; padding: 1rem;">
+                    No keywords yet. Type or paste text above to view frequency statistics.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Informational Guide -->
+        <section class="content-section">
+          <h2>Understanding Text Metrics &amp; Word Counts</h2>
+          <p>
+            Tracking text statistics is essential for social media character constraints (X/Twitter, LinkedIn, Instagram captions), academic thesis requirements, essays, blog post SEO optimization, and speech pacing.
+          </p>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Platform / Use Case</th>
+                <th>Standard Limit / Target</th>
+                <th>Recommended Reading Metric</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>X (Twitter)</strong></td>
+                <td>280 characters</td>
+                <td>Total characters including spaces.</td>
+              </tr>
+              <tr>
+                <td><strong>Google SEO Meta Description</strong></td>
+                <td>150 &ndash; 160 characters</td>
+                <td>Total characters (descriptions over 160 characters get truncated in SERP).</td>
+              </tr>
+              <tr>
+                <td><strong>Blog Post Articles</strong></td>
+                <td>1,200 &ndash; 2,500 words</td>
+                <td>6 to 12 minutes estimated reading time (based on 200 WPM).</td>
+              </tr>
+              <tr>
+                <td><strong>Keynote Speech / Podcast</strong></td>
+                <td>130 words per minute</td>
+                <td>Speaking time calculation (approx. 650 words per 5-minute talk).</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Reading Speed vs. Speaking Pace</h3>
+          <p>
+            An average adult reads silently at a speed of approximately <strong>200 to 250 words per minute (WPM)</strong>. When speaking aloud in presentations, lectures, or broadcast media, natural speech slows down to approximately <strong>130 to 150 words per minute</strong> to allow for clear pronunciation, audience comprehension, and pauses.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Text Formatting Tools</strong> &mdash; Free client-side text tools. No ads, no tracking, 100% private.
+        </div>
+        <ul class="footer-links">
+          <li><a href="index.html">All Tools</a></li>
+          <li><a href="case-converter.html">Case Converter</a></li>
+          <li><a href="text-cleaner.html">Text Cleaner</a></li>
+          <li><a href="sort-lines.html">Sort Lines</a></li>
+          <li><a href="word-counter.html">Word Counter</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <!-- Vanilla Script -->
+    <script src="./app.js"></script>
+  </body>
+</html>
