@@ -3,7 +3,7 @@ const wordCount = document.getElementById('wordCount');
 const charCount = document.getElementById('charCount');
 const lineCount = document.getElementById('lineCount');
 
-// Undo/Redo State History Tracking Core Lists
+// Array Buffer Queues for Precise History Tracking
 let stateHistoryStack = [""];
 let trackingHistoryIndex = 0;
 let bypassHistoryPushFlag = false;
@@ -12,22 +12,22 @@ if (textInput) {
     textInput.addEventListener('input', () => {
         runLiveMetrics();
         if (!bypassHistoryPushFlag) {
-            // Cut off any forward redo history track if user manually types something new
             stateHistoryStack = stateHistoryStack.slice(0, trackingHistoryIndex + 1);
             stateHistoryStack.push(textInput.value);
-            trackingHistoryIndex++;
+            trackingHistoryIndex = stateHistoryStack.length - 1;
         }
     });
 }
 
 function runLiveMetrics() {
+    if (!textInput) return;
     const text = textInput.value;
     charCount.textContent = text.length;
     wordCount.textContent = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
     lineCount.textContent = text === '' ? 0 : text.split('\n').length;
 }
 
-// 1 Step Backward Logic Execution
+// Fixed Undo Action Logic Loop
 function executeUndo() {
     if (trackingHistoryIndex > 0) {
         bypassHistoryPushFlag = true;
@@ -38,7 +38,7 @@ function executeUndo() {
     }
 }
 
-// 1 Step Forward Logic Execution
+// Fixed Redo Action Logic Loop
 function executeRedo() {
     if (trackingHistoryIndex < stateHistoryStack.length - 1) {
         bypassHistoryPushFlag = true;
@@ -49,13 +49,17 @@ function executeRedo() {
     }
 }
 
-// Intermediary script parsing helpers tracking step metrics
+// Standardizes history logging events and captures manual string replacements
 function recordExecutionState(newValueString) {
+    if (!textInput) return;
     textInput.value = newValueString;
     runLiveMetrics();
-    stateHistoryStack = stateHistoryStack.slice(0, trackingHistoryIndex + 1);
-    stateHistoryStack.push(newValueString);
-    trackingHistoryIndex++;
+    
+    if (!bypassHistoryPushFlag) {
+        stateHistoryStack = stateHistoryStack.slice(0, trackingHistoryIndex + 1);
+        stateHistoryStack.push(newValueString);
+        trackingHistoryIndex = stateHistoryStack.length - 1;
+    }
 }
 
 // 1. Case Conversions Logic Engine
@@ -97,14 +101,12 @@ function runList(type) {
     recordExecutionState(res);
 }
 
-function generateLorem() {
-    recordExecutionState("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-}
-
 function copyToClipboard() {
     if (!textInput.value) return;
     textInput.select();
     document.execCommand('copy');
+    // Clear selection focus so the display remains elegant
+    window.getSelection().removeAllRanges();
     alert('Content copied to clipboard successfully!');
 }
 
