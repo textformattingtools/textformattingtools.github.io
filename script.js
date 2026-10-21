@@ -1,82 +1,100 @@
-const textInput = document.getElementById('textInput');
-const textOutput = document.getElementById('textOutput');
-const wordCount = document.getElementById('wordCount');
-const charCount = document.getElementById('charCount');
+document.addEventListener("DOMContentLoaded", () => {
+    const inputArea = document.getElementById("input-text");
+    const outputArea = document.getElementById("output-text");
+    const wordCountElement = document.getElementById("word-count");
+    const charCountElement = document.getElementById("char-count");
+    const copyButton = document.getElementById("copy-btn");
+    const clearButton = document.getElementById("clear-btn");
+    const modeButtons = document.querySelectorAll(".case-btn");
 
-if (textInput) {
-    textInput.addEventListener('input', () => {
-        const text = textInput.value;
-        charCount.textContent = text.length;
-        wordCount.textContent = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
-        if (text === '') textOutput.value = '';
+    let currentFormatMode = "lowercase";
+
+    // Live Processing Loop
+    inputArea.addEventListener("input", () => {
+        processText();
     });
-}
 
-// 1. Case Conversions Logic Engine
-function runCase(type) {
-    let txt = textInput.value; if (!txt || txt.trim() === '') return;
-    if (type === 'upper') textOutput.value = txt.toUpperCase();
-    else if (type === 'lower') textOutput.value = txt.toLowerCase();
-    else if (type === 'title') textOutput.value = txt.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    else if (type === 'sentence') textOutput.value = txt.toLowerCase().replace(/(^\s*|[.!?]\s+)([a-z])/g, (m, p1, p2) => p1 + p2.toUpperCase());
-    else if (type === 'capitalize') textOutput.value = txt.replace(/\b([a-z])/g, (m) => m.toUpperCase());
-    else if (type === 'camel') textOutput.value = txt.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, "").replace(/(?:^\w|[A-Z]|\b\w)/g, (w, i) => i === 0 ? w.toLowerCase() : w.toUpperCase()).replace(/\s+/g, '');
-    else if (type === 'pascal') textOutput.value = txt.toLowerCase().replace(/[^a-zA-Z0-9 ]/g, "").replace(/(?:^\w|[A-Z]|\b\w)/g, (w) => w.toUpperCase()).replace(/\s+/g, '');
-    else if (type === 'snake') textOutput.value = txt.toLowerCase().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
-}
+    // Option Toggles
+    modeButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            modeButtons.forEach(btn => btn.classList.remove("active"));
+            e.target.classList.add("active");
+            currentFormatMode = e.target.dataset.case;
+            processText();
+        });
+    });
 
-// 2. Whitespace Cleaner Logic Engine
-function runClean(type) {
-    let txt = textInput.value; if (!txt || txt.trim() === '') return;
+    // Clear Workspace Function
+    clearButton.addEventListener("click", () => {
+        inputArea.value = "";
+        outputArea.value = "";
+        updateMetrics("");
+    });
 
-    if (type === 'spaces') {
-        textOutput.value = txt.replace(/[ \t]+/g, ' ').trim();
-    } else if (type === 'add_necessary') {
-        // Automatically injects spaces after punctuation marks if they are missing
-        textOutput.value = txt.replace(/([.,!?;:])([A-Za-z0-9])/g, '\$1 \$2');
-    } else if (type === 'blank') {
-        textOutput.value = txt.split('\n').filter(line => line.trim() !== '').join('\n');
-    } else if (type === 'trim') {
-        textOutput.value = txt.split('\n').map(line => line.trim()).join('\n');
-    } else if (type === 'unwrap') {
-        textOutput.value = txt.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
-    } else if (type === 'html') {
-        textOutput.value = txt.replace(/<\/?[^>]+(>|\$)/g, "");
+    // Copy Utility
+    copyButton.addEventListener("click", () => {
+        if (!outputArea.value) return;
+        navigator.clipboard.writeText(outputArea.value).then(() => {
+            const defaultText = copyButton.textContent;
+            copyButton.textContent = "Copied! ✓";
+            copyButton.style.backgroundColor = "var(--success)";
+            setTimeout(() => {
+                copyButton.textContent = defaultText;
+                copyButton.style.backgroundColor = "";
+            }, 1800);
+        });
+    });
+
+    // String Pipeline
+    function processText() {
+        const value = inputArea.value;
+        updateMetrics(value);
+
+        if (!value) {
+            outputArea.value = "";
+            return;
+        }
+
+        switch (currentFormatMode) {
+            case "lowercase":
+                outputArea.value = value.toLowerCase();
+                break;
+            case "uppercase":
+                outputArea.value = value.toUpperCase();
+                break;
+            case "title":
+                outputArea.value = value.replace(/\b[a-z]/gi, char => char.toUpperCase());
+                break;
+            case "sentence":
+                outputArea.value = value.toLowerCase().replace(/(^\s*|[.!?]\s+)([a-z])/g, char => char.toUpperCase());
+                break;
+            case "capitalize":
+                outputArea.value = value.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(" ");
+                break;
+            case "camel":
+                outputArea.value = toWordsArray(value).map((word, i) => i === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join("");
+                break;
+            case "pascal":
+                outputArea.value = toWordsArray(value).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join("");
+                break;
+            case "snake":
+                outputArea.value = toWordsArray(value).map(word => word.toLowerCase()).join("_");
+                break;
+            case "kebab":
+                outputArea.value = toWordsArray(value).map(word => word.toLowerCase()).join("-");
+                break;
+            default:
+                outputArea.value = value;
+        }
     }
-}
 
-// 3. Lines & Lists Logic Engine
-function runList(type) {
-    let txt = textInput.value; if (!txt || txt.trim() === '') return;
-    let lines = txt.split('\n');
-    if (type === 'sort_az') textOutput.value = lines.sort((a, b) => a.localeCompare(b)).join('\n');
-    else if (type === 'sort_za') textOutput.value = lines.sort((a, b) => b.localeCompare(a)).join('\n');
-    else if (type === 'reverse') textOutput.value = lines.reverse().join('\n');
-    else if (type === 'numbers') textOutput.value = lines.map((line, idx) => `${idx + 1}. ${line}`).join('\n');
-    else if (type === 'dedupe') textOutput.value = [...new Set(lines)].join('\n');
-    else if (type === 'shuffle') textOutput.value = lines.sort(() => Math.random() - 0.5).join('\n');
-}
-
-async function pasteFromClipboard() {
-    try {
-        textInput.value = await navigator.clipboard.readText();
-        textInput.dispatchEvent(new Event('input'));
-    } catch (err) {
-        alert('Please allow clipboard permissions to paste text elements.');
+    function toWordsArray(str) {
+        return str.replace(/[^a-zA-Z0-9\s]/g, "").trim().split(/\s+/).filter(Boolean);
     }
-}
 
-// Fixed copy engine target maps back explicitly to textOutput
-function copyToClipboard() {
-    if (!textOutput.value) return;
-    textOutput.select();
-    document.execCommand('copy');
-    alert('Formatted content successfully copied to clipboard!');
-}
-
-function clearText() {
-    textInput.value = '';
-    textOutput.value = '';
-    if (wordCount) wordCount.textContent = '0';
-    if (charCount) charCount.textContent = '0';
-}
+    function updateMetrics(text) {
+        charCountElement.textContent = text.length;
+        const words = text.trim().split(/\s+/).filter(Boolean);
+        wordCountElement.textContent = words.length;
+    }
+});
